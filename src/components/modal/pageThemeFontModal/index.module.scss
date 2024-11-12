@@ -1,0 +1,41 @@
+.listWrap {
+
+    .list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        height: 100%;
+
+        button {
+            position: relative;
+
+            width: calc(33.333% - 8px);
+            height: 48px;
+            padding: 0 20px;
+            font-size: 16px;
+            justify-content: flex-start;
+            color: var(--color-grey-900);
+            border-radius: 8px !important;
+            border-left-color: var(--color-grey-200);
+
+            @media screen and (max-width: 1366px) {
+                width: calc(50% - 6px);
+            }
+
+            &.selected::after {
+                position: absolute;
+                display: block;
+                content: "";
+                right: 20px;
+                top: 50%;
+                transform: translate(0, -50%);
+                width: 24px;
+                height: 24px;
+                background-image: url(/images/icon-selected.svg);
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: 24px;
+            }
+        }
+    }
+}

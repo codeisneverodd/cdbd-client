@@ -1,0 +1,166 @@
+.blockListWrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 32px;
+    min-width: 240px;
+
+    @media screen and (max-width: 1366px) {
+        & {
+            padding: 0 16px;
+        }
+    }
+    @media screen and (max-width: 1124px) {
+        & {
+            padding: 0 12px;
+            padding-right: 24px;
+        }
+    }
+
+    >button {
+        margin-bottom: 16px;
+    }
+
+    .blockList {
+        margin-bottom: 32px;
+    }
+
+    .blockListDnd {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 24px;
+
+
+        .blockListDndItem {
+            margin-bottom: 8px;
+
+            cursor: grab;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 52px;
+            background-color: var(--color-white);
+            border-radius: 8px;
+            border: 1px solid var(--color-grey-200);
+            box-shadow: 1px 1px 0.5px 0px rgba(0, 0, 0, 0.30);
+
+            &:hover, &.dragging {
+                background-color: var(--color-secondary-light);
+                border-color: var(--color-secondary-shadow);
+                
+                & .left {
+                    border-color: var(--color-secondary-shadow);
+                }
+            }
+
+            &.active {
+                position: relative;
+                background-color: var(--color-secondary-light);
+                border-color: var(--color-secondary-shadow);
+
+                &::after {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    transform: translate(-50%, -50%);
+                    content: '';
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 36px;
+                    height: 36px;
+                    background-image: url(/images/sticker-1.png);
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: 36px;
+                }
+
+                .left {
+                    border-right: 1px solid var(--color-secondary-shadow, #DFE1E2);
+                }
+            }
+
+            &.disabled {
+                background-color: var(--color-grey-50);
+                border-color: var(--color-grey-200);
+
+                &>* {
+                    opacity: .3;
+                }
+
+                & .left {
+                    opacity: 1;
+                }
+
+                & .center img {
+                    opacity: 1;
+                }
+
+            }
+
+            .left {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100%;
+                padding: 0 15px;
+                border-right: 1px solid var(--color-grey-100, #DFE1E2);
+            }
+
+            .center {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                padding: 0 16px;
+                min-width: 0;
+
+                >div {
+                    display: flex;
+                    align-items: center;
+                    width: 100%;
+
+                    .title {
+                        margin-left: 8px;
+                        color: var(--color-grey-900);
+                        font-size: 16px;
+                        font-weight: 700;
+                        letter-spacing: -0.32px;
+                        display: block;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        &[contentEditable]:focus {
+                            background-color: var(--color-success-pale);
+                            outline: none;
+                        }
+                    }
+                }
+
+                .previewText {
+                    overflow: hidden;
+                    display: block;
+                    width: 100%;
+                    color: var(--color-grey-300);
+                    font-size: 12px;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    text-align: right;
+                }
+            }
+
+            .right {
+                padding-right: 8px;
+            }
+        }
+    }
+
+    .banner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80px;
+        background-color: rgba(255, 255, 255, .5);
+        border-radius: 8px;
+    }
+}

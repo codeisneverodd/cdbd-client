@@ -1,0 +1,21 @@
+.wrap {
+    height: 100vh;
+    overflow-y: scroll;
+
+    .contentWrap {
+        width: calc(100% - 64px);
+        margin-left: 64px;
+
+        .content {
+            padding: 0 32px;
+        }
+    }
+}
+
+
+.editorWrap {
+    padding: 32px 0;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+

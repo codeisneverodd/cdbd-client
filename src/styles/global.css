@@ -1,0 +1,1044 @@
+html,
+body {
+    min-width: 1024px;
+    font-size: 14px;
+    font-family: 'Pretendard Variable', 'indivisible', 'sans-serif' !important;
+    color: var(--color-grey-900);
+    word-break: keep-all;
+    background-color: var(--color-grey-200);
+}
+
+body {
+    height: 100%;
+    background: repeating-linear-gradient(to right,
+            #C2C6C8 10px,
+            #C2C6C8 11px,
+            var(--color-grey-200) 10px,
+            var(--color-grey-200) 44px);
+}
+
+body * {
+
+    -webkit-font-smoothing: antialiased;
+}
+
+.h1 {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
+    /* 27px */
+    letter-spacing: -0.36px;
+}
+
+.h1-eng {
+    font-family: "indivisible" !important;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%; /* 36px */
+    letter-spacing: -0.48px;
+}
+
+.h2 {
+    font-size: 16px !important;
+    font-style: normal;
+    font-weight: 700 !important;
+    line-height: 150%;
+    /* 24px */
+    letter-spacing: -0.32px;
+}
+
+.h3 {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
+    /* 21px */
+    letter-spacing: -0.28px;
+}
+
+.h5 {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
+    /* 21px */
+    letter-spacing: -0.28px;
+}
+
+.subtitle1 {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%;
+    /* 21px */
+    letter-spacing: -0.28px;
+}
+.subtitle1-eng {
+    font-family: "indivisible" !important;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%; /* 21px */
+    letter-spacing: -0.28px;
+}
+
+.subtitle2 {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%;
+    /* 21px */
+    letter-spacing: -0.28px;
+}
+.subtitle2-eng {
+    font-family: "indivisible" !important;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%; /* 21px */
+    letter-spacing: -0.28px;
+}
+
+.indivisible *,
+.indivisible {
+    font-family: "indivisible" !important;
+}
+
+.unit-eng {
+    font-family: "indivisible" !important;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    /* 18px */
+    letter-spacing: -0.24px;
+}
+
+.unit-kor {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    /* 18px */
+    letter-spacing: -0.24px;
+}
+
+.p1 {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400 !important;
+    line-height: 150%;
+    /* 21px */
+    letter-spacing: -0.28px;
+}
+
+.p2 {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 21px */
+    letter-spacing: -0.28px;
+}
+
+.p1-eng {
+    font-family: "indivisible" !important;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    /* 21px */
+    letter-spacing: -0.28px;
+}
+
+.caption {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%;
+    /* 18px */
+    letter-spacing: -0.24px;
+}
+
+.caption-eng {
+    font-family: "indivisible" !important;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%; /* 18px */
+    letter-spacing: -0.24px;
+}
+
+.text-primary {
+    color: var(--color-primary) !important;
+}
+.text-information {
+    color: var(--color-information) !important;
+}
+
+.text-grey-300 {
+    color: var(--color-grey-300);
+}
+
+.text-grey-400 {
+    color: var(--color-grey-400);
+}
+
+.text-grey-900 {
+    color: var(--color-grey-900);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.hr {
+    display: block;
+    margin: 12px 0;
+    border-color: var(--color-grey-50);
+}
+
+.helperText {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: -16px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.swiper-container {
+    width: 100%;
+    max-width: 100%;
+    max-height: 100vh;
+    min-height: 0;
+    min-width: 0;
+}
+
+.input-box {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.swiper-button-prev {
+    background-image: url(../../public/images/icon-carousel-arrow.svg) !important;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center;
+    transform: rotate(180deg);
+}
+
+.swiper-button-next {
+    background-image: url(../../public/images/icon-carousel-arrow.svg) !important;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center;
+}
+
+.swiper-button-next::after {
+    display: none;
+}
+
+.swiper-button-prev::after {
+    display: none;
+}
+
+
+/* Confirm, Alert swal 스타일링 */
+.swal2-popup {
+    width: 400px !important;
+    padding: 0 !important;
+    border-radius: 16px !important;
+    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25) !important;    
+}
+
+.swal2-title {
+    padding: 28px 32px 12px !important;
+
+    text-align: left;
+    word-break: keep-all !important;
+    font-size: 18px !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    line-height: 150% !important;
+    /* 27px */
+    letter-spacing: -0.36px !important;
+    color: var(--color-grey-900);
+}
+
+.swal2-html-container {
+    word-break: keep-all !important;
+    font-size: 14px !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    line-height: 150% !important;
+    /* 21px */
+    letter-spacing: -0.28px !important;
+    text-align: left !important;
+    margin: 20px 12px 0 12px !important;
+    color: var(--color-grey-900);
+}
+
+.swal2-html-container {
+    padding: 16px 32px !important;
+    margin: 0 !important;
+}
+
+.swal2-styled {
+    font-size: 14px !important;
+    padding: 8px 24px !important;
+    font-weight: 400 !important;
+    border-radius: 8px !important;
+    font-size: 13px !important;
+    height: 32px !important;
+    padding: 0 !important;
+    width: 80px !important;
+}
+
+.swal2-styled.swal2-confirm {
+    background-color: var(--color-primary) !important;
+    margin: 0 !important;
+    font-size: 14px !important;
+    font-style: normal !important;
+    font-weight: 600 !important;
+    line-height: 150%;
+    /* 21px */
+    letter-spacing: -0.28px;
+
+    width: fit-content !important;
+    height: 38px !important;
+    line-height: 38px !important;
+    padding: 0 24px !important;
+}
+
+.swal2-styled.swal2-confirm:focus {
+    box-shadow: 0 0 0 1px var(--color-primary-light) !important;
+}
+
+.swal2-styled.swal2-deny {
+    background-color: white !important;
+    color: var(--color-grey-800);
+    border: 1px solid var(--color-grey-200);
+    margin: 0 !important;
+    font-size: 14px !important;
+    font-style: normal !important;
+    font-weight: 600 !important;
+    line-height: 150%;
+    /* 21px */
+    letter-spacing: -0.28px;
+
+    width: fit-content !important;
+    height: 38px !important;
+    line-height: 38px !important;
+    padding: 0 24px !important;
+}
+
+.swal2-styled.swal2-deny:focus {
+    box-shadow: 0 0 0 1px var(--color-grey-100) !important;
+}
+
+
+div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2-styled:hover {
+    background-image: unset !important;
+}
+
+.swal2-container {
+    z-index: 9999 !important;
+}
+
+.swal2-actions {
+    display: flex;
+    gap: 12px;
+    width: 100% !important;
+    justify-content: flex-end !important;
+    margin: 0 !important;
+    padding: 16px 32px 28px 32px !important;
+}
+
+.swal2-close {
+    position: absolute;
+    top: 28px !important;
+    right: 32px !important;
+    width: 28px;
+    height: 28px;
+    background-image: url(../../public/images/icon-close.svg) !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+}
+
+/* toast */
+.toast {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: #eee;
+    border-radius: 16px;
+    height: 49px;
+    padding: 0 24px;
+}
+
+.toast.success {
+    border: 1px solid var(--color-secondary-dark);
+    background-color: rgba(180, 249, 216, 0.9);
+    color: var(--color-secondary-dark);
+}
+.toast.error {
+    border: 1px solid var(--color-danger);
+    background-color: rgba(255, 223, 220, 0.9);
+    color: var(--color-danger);
+}
+.toast.warning {
+    border: 1px solid #FF8610;
+    background-color: rgba(255, 235, 217, 0.9);
+    color: #FF8610;
+}
+
+/* fonts */
+
+
+.bold {
+    font-weight: bold !important;
+}
+
+.pretendard {
+    font-family: 'Pretendard Variable' !important;
+}
+
+@font-face {
+    font-family: 'notoSansKr';
+    font-weight: normal;
+    src: url('/fonts/notoSansKr.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'notoSansKr';
+    font-weight: bold;
+    src: url('/fonts/notoSansKr-bold.ttf') format('truetype');
+}
+
+.notoSansKr {
+    font-family: 'notoSansKr' !important;
+}
+
+@font-face {
+    font-family: 'notoSerifKr';
+    font-weight: normal;
+    src: url('/fonts/notoSerifKr.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'notoSerifKr';
+    font-weight: bold;
+    src: url('/fonts/notoSerifKr-bold.ttf') format('truetype');
+}
+
+.notoSerifKr {
+    font-family: 'notoSerifKr' !important;
+}
+
+@font-face {
+    font-family: 'nanumGothic';
+    font-weight: normal;
+    src: url('/fonts/nanumGothic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'nanumGothic';
+    font-weight: bold;
+    src: url('/fonts/nanumGothic-bold.ttf') format('truetype');
+}
+
+.nanumGothic {
+    font-family: 'nanumGothic' !important;
+}
+
+@font-face {
+    font-family: 'nanumSerif';
+    font-weight: normal;
+    src: url('/fonts/nanumSerif.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'nanumSerif';
+    font-weight: bold;
+    src: url('/fonts/nanumSerif-bold.ttf') format('truetype');
+}
+
+.nanumSerif {
+    font-family: 'nanumSerif' !important;
+}
+
+@font-face {
+    font-family: 'bukkGothic';
+    font-weight: normal;
+    src: url('/fonts/bukkGothic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'bukkGothic';
+    font-weight: bold;
+    src: url('/fonts/bukkGothic-bold.ttf') format('truetype');
+}
+
+.bukkGothic {
+    font-family: 'bukkGothic' !important;
+}
+
+@font-face {
+    font-family: 'bukkSerif';
+    font-weight: normal;
+    src: url('/fonts/bukkSerif.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'bukkSerif';
+    font-weight: bold;
+    src: url('/fonts/bukkSerif-bold.ttf') format('truetype');
+}
+
+.bukkSerif {
+    font-family: 'bukkSerif' !important;
+}
+
+@font-face {
+    font-family: 'kopubDotum';
+    font-weight: normal;
+    src: url('/fonts/kopubDotum.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'kopubDotum';
+    font-weight: bold;
+    src: url('/fonts/kopubDotum-bold.ttf') format('truetype');
+}
+
+.kopubDotum {
+    font-family: 'kopubDotum' !important;
+}
+
+@font-face {
+    font-family: 'kopubBatang';
+    font-weight: normal;
+    src: url('/fonts/kopubBatang.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'kopubBatang';
+    font-weight: bold;
+    src: url('/fonts/kopubBatang-bold.ttf') format('truetype');
+}
+
+.kopubBatang {
+    font-family: 'kopubBatang' !important;
+}
+
+@font-face {
+    font-family: 'gounDotum';
+    font-weight: normal;
+    src: url('/fonts/gounDotum.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'gounDotum';
+    font-weight: bold;
+    src: url('/fonts/gounDotum-bold.ttf') format('truetype');
+}
+
+.gounDotum {
+    font-family: 'gounDotum' !important;
+}
+
+@font-face {
+    font-family: 'gounBatang';
+    font-weight: normal;
+    src: url('/fonts/gounBatang.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'gounBatang';
+    font-weight: bold;
+    src: url('/fonts/gounBatang-bold.ttf') format('truetype');
+}
+
+.gounBatang {
+    font-family: 'gounBatang' !important;
+}
+
+
+@font-face {
+    font-family: 'ChosunilboNM';
+    font-weight: normal;
+    src: url('/fonts/ChosunilboNM.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'ChosunilboNM';
+    font-weight: bold;
+    src: url('/fonts/ChosunilboNM.ttf') format('truetype');
+}
+
+.ChosunilboNM {
+    font-family: 'ChosunilboNM' !important;
+}
+
+@font-face {
+    font-family: 'taebaekMilkyway';
+    font-weight: normal;
+    src: url('/fonts/taebaekMilkyway.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'taebaekMilkyway';
+    font-weight: bold;
+    src: url('/fonts/taebaekMilkyway-bold.ttf') format('truetype');
+}
+
+.taebaekMilkyway {
+    font-family: 'taebaekMilkyway' !important;
+}
+
+@font-face {
+    font-family: 'mapoFlowerIsland';
+    font-weight: normal;
+    src: url('/fonts/mapoFlowerIsland.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'mapoFlowerIsland';
+    font-weight: bold;
+    src: url('/fonts/mapoFlowerIsland-bold.ttf') format('truetype');
+}
+
+.mapoFlowerIsland {
+    font-family: 'mapoFlowerIsland' !important;
+}
+
+@font-face {
+    font-family: 'escoreDream';
+    font-weight: normal;
+    src: url('/fonts/escoreDream.otf') format('openType');
+}
+
+@font-face {
+    font-family: 'escoreDream';
+    font-weight: bold;
+    src: url('/fonts/escoreDream-bold.otf') format('openType');
+}
+
+.escoreDream {
+    font-family: 'escoreDream' !important;
+}
+
+@font-face {
+    font-family: 'gmarketSans';
+    font-weight: normal;
+    src: url('/fonts/gmarketSans.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'gmarketSans';
+    font-weight: bold;
+    src: url('/fonts/gmarketSans-bold.ttf') format('truetype');
+}
+
+.gmarketSans {
+    font-family: 'gmarketSans' !important;
+}
+
+@font-face {
+    font-family: 'pyongchang';
+    font-weight: normal;
+    src: url('/fonts/pyongchang.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'pyongchang';
+    font-weight: bold;
+    src: url('/fonts/pyongchang-bold.ttf') format('truetype');
+}
+
+.pyongchang {
+    font-family: 'pyongchang' !important;
+}
+
+@font-face {
+    font-family: 'hsSantokki';
+    font-weight: normal;
+    src: url('/fonts/hsSantokki.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'hsSantokki';
+    font-weight: bold;
+    src: url('/fonts/hsSantokki-bold.ttf') format('truetype');
+}
+
+.hsSantokki {
+    font-family: 'hsSantokki' !important;
+}
+
+@font-face {
+    font-family: 'hakgyoansimMagician';
+    font-weight: normal;
+    src: url('/fonts/hakgyoansimMagician.otf') format('openType');
+}
+
+@font-face {
+    font-family: 'hakgyoansimMagician';
+    font-weight: bold;
+    src: url('/fonts/hakgyoansimMagician-bold.otf') format('openType');
+}
+
+.hakgyoansimMagician {
+    font-family: 'hakgyoansimMagician' !important;
+}
+
+@font-face {
+    font-family: 'hakgyoansimDotbogi';
+    font-weight: normal;
+    src: url('/fonts/hakgyoansimDotbogi.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'hakgyoansimDotbogi';
+    font-weight: bold;
+    src: url('/fonts/hakgyoansimDotbogi-bold.ttf') format('truetype');
+}
+
+.hakgyoansimDotbogi {
+    font-family: 'hakgyoansimDotbogi' !important;
+}
+
+@font-face {
+    font-family: 'cafe24ClassicType';
+    font-weight: normal;
+    src: url('/fonts/cafe24ClassicType.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'cafe24ClassicType';
+    font-weight: bold;
+    src: url('/fonts/cafe24ClassicType-bold.ttf') format('truetype');
+}
+
+.cafe24ClassicType {
+    font-family: 'cafe24ClassicType' !important;
+}
+
+@font-face {
+    font-family: 'cafe24Moyamoya';
+    font-weight: normal;
+    src: url('/fonts/cafe24Moyamoya.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'cafe24Moyamoya';
+    font-weight: bold;
+    src: url('/fonts/cafe24Moyamoya-bold.ttf') format('truetype');
+}
+
+.cafe24Moyamoya {
+    font-family: 'cafe24Moyamoya' !important;
+}
+
+@font-face {
+    font-family: 'bagleFat';
+    font-weight: normal;
+    src: url('/fonts/bagleFat.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'bagleFat';
+    font-weight: bold;
+    src: url('/fonts/bagleFat-bold.ttf') format('truetype');
+}
+
+.bagleFat {
+    font-family: 'bagleFat' !important;
+}
+
+@font-face {
+    font-family: 'waguri';
+    font-weight: normal;
+    src: url('/fonts/waguri.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'waguri';
+    font-weight: bold;
+    src: url('/fonts/waguri-bold.ttf') format('truetype');
+}
+
+.waguri {
+    font-family: 'waguri' !important;
+}
+
+@font-face {
+    font-family: 'changwonDangamAsac';
+    font-weight: normal;
+    src: url('/fonts/changwonDangamAsac.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'changwonDangamAsac';
+    font-weight: bold;
+    src: url('/fonts/changwonDangamAsac-bold.ttf') format('truetype');
+}
+
+.changwonDangamAsac {
+    font-family: 'changwonDangamAsac' !important;
+}
+
+@font-face {
+    font-family: 'partialSans';
+    font-weight: normal;
+    src: url('/fonts/partialSans.otf') format('openType');
+}
+
+.partialSans {
+    font-family: 'partialSans' !important;
+}
+
+/* font-eng */
+
+@font-face {
+    font-family: 'lato';
+    font-weight: normal;
+    src: url('/fonts/lato.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'lato';
+    font-weight: bold;
+    src: url('/fonts/lato-bold.ttf') format('truetype');
+}
+
+.lato {
+    font-family: 'lato' !important;
+}
+
+@font-face {
+    font-family: 'ptSans';
+    font-weight: normal;
+    src: url('/fonts/ptSans.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'ptSans';
+    font-weight: bold;
+    src: url('/fonts/ptSans-bold.ttf') format('truetype');
+}
+
+.ptSans {
+    font-family: 'ptSans' !important;
+}
+
+@font-face {
+    font-family: 'ptSerif';
+    font-weight: normal;
+    src: url('/fonts/ptSerif.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'ptSerif';
+    font-weight: bold;
+    src: url('/fonts/ptSerif-bold.ttf') format('truetype');
+}
+
+.ptSerif {
+    font-family: 'ptSerif' !important;
+}
+
+@font-face {
+    font-family: 'montserrat';
+    font-weight: normal;
+    src: url('/fonts/montserrat.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'montserrat';
+    font-weight: bold;
+    src: url('/fonts/montserrat-bold.ttf') format('truetype');
+}
+
+.montserrat {
+    font-family: 'montserrat' !important;
+}
+
+@font-face {
+    font-family: 'quicksand';
+    font-weight: normal;
+    src: url('/fonts/quicksand.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'quicksand';
+    font-weight: bold;
+    src: url('/fonts/quicksand-bold.ttf') format('truetype');
+}
+
+.quicksand {
+    font-family: 'quicksand' !important;
+}
+
+@font-face {
+    font-family: 'libreBaskerville';
+    font-weight: normal;
+    src: url('/fonts/libreBaskerville.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'libreBaskerville';
+    font-weight: bold;
+    src: url('/fonts/libreBaskerville-bold.ttf') format('truetype');
+}
+
+.libreBaskerville {
+    font-family: 'libreBaskerville' !important;
+}
+
+@font-face {
+    font-family: 'ebGaramond';
+    font-weight: normal;
+    src: url('/fonts/ebGaramond.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'ebGaramond';
+    font-weight: bold;
+    src: url('/fonts/ebGaramond-bold.ttf') format('truetype');
+}
+
+.ebGaramond {
+    font-family: 'ebGaramond' !important;
+}
+
+@font-face {
+    font-family: 'playfairDisplay';
+    font-weight: normal;
+    src: url('/fonts/playfairDisplay.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'playfairDisplay';
+    font-weight: bold;
+    src: url('/fonts/playfairDisplay-bold.ttf') format('truetype');
+}
+
+.playfairDisplay {
+    font-family: 'playfairDisplay' !important;
+}
+
+@font-face {
+    font-family: 'poppins';
+    font-weight: normal;
+    src: url('/fonts/poppins.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'poppins';
+    font-weight: bold;
+    src: url('/fonts/poppins-bold.ttf') format('truetype');
+}
+
+.poppins {
+    font-family: 'poppins' !important;
+}
+
+@font-face {
+    font-family: 'abrilFatface';
+    font-weight: normal;
+    src: url('/fonts/abrilFatface.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'abrilFatface';
+    font-weight: bold;
+    src: url('/fonts/abrilFatface-bold.ttf') format('truetype');
+}
+
+.abrilFatface {
+    font-family: 'abrilFatface' !important;
+}
+
+@font-face {
+    font-family: 'bebasneue';
+    font-weight: normal;
+    src: url('/fonts/bebasneue.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'bebasneue';
+    font-weight: bold;
+    src: url('/fonts/bebasneue-bold.ttf') format('truetype');
+}
+
+.bebasneue {
+    font-family: 'bebasneue' !important;
+}
+
+@font-face {
+    font-family: 'anton';
+    font-weight: normal;
+    src: url('/fonts/anton.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'anton';
+    font-weight: bold;
+    src: url('/fonts/anton-bold.ttf') format('truetype');
+}
+
+.anton {
+    font-family: 'anton' !important;
+}
+
+@font-face {
+    font-family: 'poiretone';
+    font-weight: normal;
+    src: url('/fonts/poiretone.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'poiretone';
+    font-weight: bold;
+    src: url('/fonts/poiretone-bold.ttf') format('truetype');
+}
+
+.poiretone {
+    font-family: 'poiretone' !important;
+}
+
+@font-face {
+    font-family: 'zeyada';
+    font-weight: normal;
+    src: url('/fonts/zeyada.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'zeyada';
+    font-weight: bold;
+    src: url('/fonts/zeyada-bold.ttf') format('truetype');
+}
+
+.zeyada {
+    font-family: 'zeyada' !important;
+}
+
+@font-face {
+    font-family: 'tiquitaca';
+    font-weight: normal;
+    src: url('/fonts/tiquitaca.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'tiquitaca';
+    font-weight: bold;
+    src: url('/fonts/tiquitaca-bold.ttf') format('truetype');
+}
+
+.tiquitaca {
+    font-family: 'tiquitaca' !important;
+}

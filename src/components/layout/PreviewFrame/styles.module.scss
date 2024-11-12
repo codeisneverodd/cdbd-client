@@ -1,0 +1,115 @@
+.previewWrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+    &.modal {
+        z-index: 30;
+    }
+
+    .deviceFrame {
+        overflow-y: auto;
+        width: 100%;
+        max-width: 380px;
+        min-width: 380px;
+        height: 780px;
+        background-color: var(--color-white);
+        border: 8px solid var(--color-grey-600);
+        border-radius: 20px;
+        transform-origin: top;
+
+        @media screen and (max-width: 1366px) {
+            max-width: 380px;
+            min-width: 380px;
+            height: 780px;
+            transform: scale(0.8);
+        }
+    }
+}
+
+.pointer {
+    z-index: 20;
+    position: absolute;
+    top: 0;
+    left: calc((50% - (380px / 2)) - 24px);
+    transform: translate(-50%,0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    background-image: url(/images/icon-pointer.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 24px;
+
+
+    @media screen and (max-width: 1366px) {
+        & {
+            left: calc((50% - (360px / 2)));
+        }
+    }
+    @media screen and (max-width: 1248px) {
+        & {
+            left: -8px;
+        }
+    }
+}
+.previewList {
+    li {
+        width: 100%;
+        &.active {
+
+            >article {
+                position: relative;
+                border: 2px dashed var(--color-secondary);
+            }
+
+        }
+        img {
+            display: block;
+        }
+        .defaultArea {
+            width: 100%;
+            border: 1px dashed var(--color-grey-500);
+            border-radius: 8px;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            overflow-x: auto;
+        }
+    }
+}
+
+.editable {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    
+    &::after {
+        transition: opacity .2s;
+        opacity: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        content: '';
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 34px;
+        height: 34px;
+        background-color: var(--color-grey-900);
+        background-image: url(/images/icon-change-white.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 16px;
+        border-radius: 8px;
+    }
+    &:hover {
+        &::after {
+            opacity: 1;
+        }
+
+    }
+}
