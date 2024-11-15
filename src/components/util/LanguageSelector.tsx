@@ -6,6 +6,7 @@ import Image from "next/image";
 type Props = {};
 
 export default function LanguageSelector({}: Props) {
+  return null;
   return (
     <Stack direction="row" justifyContent="flex-end" width="100%">
       <Select
