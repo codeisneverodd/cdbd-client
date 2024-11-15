@@ -40,6 +40,7 @@ export default function EmailLogin({ email, setEmail }: Props) {
   const [showPassword, setShowPassword] = React.useState(false);
 
   const passErrorText = React.useMemo(() => {
+    return [];
     if (!password) return [];
 
     var errorMessages = [];
