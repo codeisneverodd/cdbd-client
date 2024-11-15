@@ -1,38 +1,24 @@
 "use client";
 import styles from "../style.module.scss";
 
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import logo from "/public/images/logo-hybrid.svg";
 
-import { useState } from "react";
-import LanguageSelector from "@/components/util/LanguageSelector";
-import { emailLogin } from "@/actions/credentialLogin";
-import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
-import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
-import {
-  Box,
-  IconButton,
-  InputAdornment,
-  TextField,
-  Typography,
-  Link as MuiLink,
-} from "@mui/material";
-import { redirect } from "next/navigation";
-import React, { Dispatch, SetStateAction, useEffect } from "react";
-import { useFormState } from "react-dom";
-import { usePathname } from "next/navigation";
-import iconError from "/public/images/icon-error.svg";
 import LoadingFormButton from "@/components/buttons/LoadingFormButton";
+import LanguageSelector from "@/components/util/LanguageSelector";
+import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import { Box, IconButton, InputAdornment, TextField } from "@mui/material";
+import { usePathname, useRouter } from "next/navigation";
+import React, { Dispatch, SetStateAction, useState } from "react";
+import iconCheck from "/public/images/icon-check.svg";
+import iconError from "/public/images/icon-error.svg";
+import { supaBrowserClient } from "@/lib/supabase/createBrowserClient";
 
 type Props = {
   email: string;
   setEmail: Dispatch<SetStateAction<string>>;
-};
-
-const initialState = {
-  error: "",
-  message: "",
 };
 
 export default function ResetPassword() {
@@ -46,29 +32,25 @@ export default function ResetPassword() {
 
         <div className={styles.formWrap}>
           <div className={styles.formBox}>
-            <div
-              className={styles.top}
-              style={{ marginBottom: email.length > 0 ? "100px" : "80px" }}
-            >
+            <div className={styles.top} style={{ marginBottom: "80px" }}>
               <Image src={logo} alt="CdBd logo" />
             </div>
             <div className={`${styles.bottom} ${styles.resetPassword}`}>
               <section>
-                <p className={`h1-eng ${styles.title}`}>Reset Password</p>
+                <p className={`h1-eng ${styles.title}`}>비밀번호 재설정</p>
                 <span
                   className="p2-eng text-grey-900"
                   style={{ marginBottom: "24px" }}
                 >
-                  Having trouble signing in? Enter your email account below, and
-                  we&rsquo;ll send you a reset link.
+                  로그인에 어려움을 겪고있나요? 아래 이메일을 적어주시면
+                  비밀번호 재설정 링크를 보내드릴게요.
                 </span>
-                {/* Email login */}
                 <ResetPasswordForm email={email} setEmail={setEmail} />
               </section>
               <div className={styles.signup}>
-                <span className="p2-eng">Remember your password?</span>
+                <span className="p2-eng">비밀번호가 기억나셨나요?</span>
                 <Link className="subtitle2-eng" href="/sign-in">
-                  Sign In
+                  로그인하기
                 </Link>
               </div>
             </div>
@@ -80,49 +62,36 @@ export default function ResetPassword() {
 }
 
 function ResetPasswordForm({ email, setEmail }: Props) {
-  const pathname = usePathname();
-  const [state, credentialLoginAction] = useFormState(emailLogin, initialState);
-  const [password, setPassword] = React.useState("");
-  const [showPassword, setShowPassword] = React.useState(false);
+  const supabase = supaBrowserClient();
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
-  const passErrorText = React.useMemo(() => {
-    if (!password) return [];
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/reset-password/form`,
+    });
+    setLoading(false);
 
-    var errorMessages = [];
-
-    if (password.length < 8)
-      errorMessages.push("비밀번호는 최소 8자리 이상이어야 합니다");
-    if (!/[A-Z]/.test(password))
-      errorMessages.push("비밀번호는 최소 1개 이상의 대문자를 포함해야 합니다");
-    if (!/[a-z]/.test(password))
-      errorMessages.push("비밀번호는 최소 1개 이상의 소문자를 포함해야 합니다");
-    if (!/[0-9]/.test(password))
-      errorMessages.push("비밀번호는 최소 1개 이상의 숫자를 포함해야 합니다");
-    if (!/[!@#$%^&*]/.test(password))
-      errorMessages.push(
-        "비밀번호는 최소 1개 이상의 특수문자를 포함해야 합니다"
-      );
-
-    return errorMessages;
-  }, [password]);
-
-  useEffect(() => {
-    if (pathname !== "/sign-in") {
-      // alert("You are not on the sign-in page");
-      redirect("/sign-in");
+    if (error) {
+      alert("링크 전송에 실패했습니다.");
+      return;
     }
-  }, [pathname]);
+
+    router.push(`/reset-password/sent?email=${email}`);
+  };
 
   return (
     <Box
       component="form"
-      action={credentialLoginAction}
       className={styles.emailLoginWrap}
+      onSubmit={handleSubmit}
     >
       <div>
         <div className="input-box" style={{ marginBottom: "20px" }}>
           <label htmlFor="email" className="subtitle1-eng">
-            Email
+            이메일
           </label>
           <TextField
             color="secondary"
@@ -131,57 +100,11 @@ function ResetPasswordForm({ email, setEmail }: Props) {
             fullWidth
             value={email}
             id="email"
-            placeholder="Please enter your email address."
+            placeholder="이메일을 입력해주세요"
             name="email"
             autoComplete="email"
             autoFocus
             onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-
-        <div className="input-box">
-          <label htmlFor="password" className="subtitle1-eng">
-            Password
-          </label>
-          <TextField
-            color="secondary"
-            size="small"
-            required
-            fullWidth
-            name="password"
-            placeholder="Please enter your password."
-            type={showPassword ? "text" : "password"}
-            id="password"
-            autoComplete="current-password"
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-            error={Boolean(passErrorText.length)}
-            helperText={
-              passErrorText.length > 0 &&
-              passErrorText?.map((err) => (
-                <div className="helperText" key={err}>
-                  <Image src={iconError} alt="error" width={10} height={10} />
-                  <span>{err}</span>
-                </div>
-              ))
-            }
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    onClick={() => setShowPassword(!showPassword)}
-                    sx={{ opacity: 0.5, width: "20px", height: "20px" }}
-                  >
-                    {showPassword ? (
-                      <VisibilityOffOutlinedIcon />
-                    ) : (
-                      <VisibilityOutlinedIcon />
-                    )}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
           />
         </div>
       </div>
@@ -191,15 +114,12 @@ function ResetPasswordForm({ email, setEmail }: Props) {
           variant="contained"
           fullWidth
           type="submit"
-          disabled={Boolean(passErrorText.length) || !email || !password}
+          disabled={email.length <= 0}
           sx={{ marginTop: "24px", marginBottom: "16px" }}
+          loading={loading}
         >
-          Get Reset Link
+          재설정 링크 받기
         </LoadingFormButton>
-
-        <Typography variant="body1" color="error">
-          {state?.error}
-        </Typography>
       </div>
     </Box>
   );

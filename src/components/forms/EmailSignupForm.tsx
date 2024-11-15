@@ -148,9 +148,9 @@ export default function EmailSignupForm({}: Props) {
             type="submit"
             fullWidth
             variant="contained"
-            disabled={email.length === 0}
+            disabled={email.length === 0 || helperTexts.some((h) => h.error)}
             sx={{ marginTop: "8px", marginBottom: "16px" }}
-            loading={false}
+            loading={loading}
           >
             가입하기
           </LoadingFormButton>

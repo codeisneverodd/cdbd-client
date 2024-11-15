@@ -20,18 +20,22 @@ type Props = {
   setEmail: Dispatch<SetStateAction<string>>;
 };
 
-export default function EmailLogin({ email, setEmail }: Props) {
+export default function EmailSignIn({ email, setEmail }: Props) {
   const supabase = supaBrowserClient();
   const router = useRouter();
   const [password, setPassword] = React.useState("");
   const [showPassword, setShowPassword] = React.useState(false);
   const [error, setError] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
 
   const handleLogin = async () => {
+    setLoading(true);
     const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
+    setLoading(false);
+
     if (error) {
       return setError("로그인에 실패했습니다.");
     }
@@ -112,9 +116,8 @@ export default function EmailLogin({ email, setEmail }: Props) {
       </div>
 
       <div>
-        {/* {email?.length > 0 && ( */}
-
         <LoadingFormButton
+          loading={loading}
           variant="contained"
           fullWidth
           type="submit"
@@ -123,23 +126,10 @@ export default function EmailLogin({ email, setEmail }: Props) {
         >
           로그인
         </LoadingFormButton>
-        {/* )} */}
       </div>
       <Typography variant="body1" color="error">
         {error}
       </Typography>
-
-      {/* <Typography variant="body2" my={2}>
-        가입과 동시에 CdBd의{" "}
-        <MuiLink component={Link} href="#" variant="body2">
-          이용약관
-        </MuiLink>{" "}
-        및{" "}
-        <MuiLink component={Link} href="#" variant="body2">
-          개인정보 처리방침
-        </MuiLink>
-        에 동의함을 승인하게 됩니다
-      </Typography> */}
     </Box>
   );
 }

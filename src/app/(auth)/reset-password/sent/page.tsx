@@ -1,14 +1,16 @@
 "use client";
 import styles from "../../style.module.scss";
 
-import Image from "next/image";
-import logo from "/public/images/logo-hybrid.svg";
 import LanguageSelector from "@/components/util/LanguageSelector";
-import { Button, Stack } from "@mui/material";
-import React from "react";
+import { Stack } from "@mui/material";
+import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 import iconCheck from "/public/images/icon-check.svg";
+import logo from "/public/images/logo-hybrid.svg";
 
-export default function ResetPasswordResult() {
+export default function ResetPasswordSent() {
+  const searchParam = useSearchParams();
+
   return (
     <div className={styles.signInSideWrap}>
       <div className={styles.left}></div>
@@ -23,7 +25,7 @@ export default function ResetPasswordResult() {
             <div className={`${styles.bottom} ${styles.resetPassword}`}>
               <section>
                 <Stack direction="row" alignItems="center" gap="12px">
-                  <p className={`h1-eng text-information ${styles.title}`}>
+                  <p className={`h1-eng flex text-information ${styles.title}`}>
                     <Image
                       src={iconCheck}
                       alt="check"
@@ -35,7 +37,7 @@ export default function ResetPasswordResult() {
                           "invert(44%) sepia(85%) saturate(2067%) hue-rotate(196deg) brightness(100%) contrast(96%)",
                       }}
                     />
-                    <span>Password Reset Complete</span>
+                    <span>이메일 전송됨</span>
                   </p>
                 </Stack>
                 <span
@@ -45,14 +47,30 @@ export default function ResetPasswordResult() {
                     transform: "translate(0, -8px)",
                   }}
                 >
-                  Having trouble signing in? Enter your email account below, and
-                  we&rsquo;ll send you a reset link.
+                  비밀번호 재설정 이메일이 {searchParam.get("email") ?? ""} 로
+                  전송되었습니다. 이메일을 확인하고 링크를 클릭하여 비밀번호
+                  재설정을 완료해주세요.
                 </span>
               </section>
 
-              <Button variant="contained" fullWidth href="/sign-in">
-                Sign In
-              </Button>
+              {/* <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
+                <Button
+                  variant="outlined"
+                  color="info"
+                  className="subtitle1-eng"
+                  fullWidth
+                  sx={{ marginBottom: '16px' }}
+                >
+                  Start Without Signing Up
+                </Button>
+
+                <div className={styles.signup}>
+                  <span className="p2-eng">Already have an account?</span>
+                  <Link className="subtitle2-eng" href="/sign-in">
+                    Sign In
+                  </Link>
+                </div>
+              </div> */}
             </div>
           </div>
         </div>

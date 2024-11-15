@@ -1,7 +1,7 @@
 "use client";
 import styles from "../style.module.scss";
 
-import EmailLogin from "@/components/forms/EmailLogin";
+import EmailSignIn from "@/components/forms/EmailSignIn";
 import GoogleLoginForm from "@/components/forms/GoogleLoginForm";
 import Link from "next/link";
 import Image from "next/image";
@@ -21,28 +21,18 @@ export default function SignInSide() {
 
         <div className={styles.formWrap}>
           <div className={styles.formBox}>
-            <div
-              className={styles.top}
-              // style={{ marginBottom: email.length > 0 ? "100px" : "80px" }}
-              style={{ marginBottom: "100px" }}
-            >
+            <div className={styles.top} style={{ marginBottom: "80px" }}>
               <Image src={logo} alt="CdBd logo" />
             </div>
             <div className={styles.bottom}>
               <p className={`h1-eng ${styles.title}`}>로그인하기</p>
 
-              {/* Google login */}
-              {/* {email.length === 0 && ( */}
-              <>
-                <GoogleLoginForm />
-                <div className={styles.divider}>
-                  <span className="subtitle2-eng">또는</span>
-                </div>
-              </>
-              {/* )} */}
+              <GoogleLoginForm />
+              <div className={styles.divider}>
+                <span className="subtitle2-eng">또는</span>
+              </div>
 
-              {/* Email login */}
-              <EmailLogin email={email} setEmail={setEmail} />
+              <EmailSignIn email={email} setEmail={setEmail} />
               <div className={styles.signup}>
                 <span className="p2-eng">아직 계정이 없으신가요?</span>
                 <Link className="subtitle2-eng" href="/sign-up">
