@@ -46,30 +46,27 @@ export type Database = {
       }
       user: {
         Row: {
-          companyName: string
+          companyName: string | null
           created_at: string
           email: string
-          emailVerified: string
           id: string
-          image: string
+          image: string | null
           name: string
         }
         Insert: {
-          companyName: string
+          companyName?: string | null
           created_at?: string
           email: string
-          emailVerified: string
           id?: string
-          image: string
+          image?: string | null
           name: string
         }
         Update: {
-          companyName?: string
+          companyName?: string | null
           created_at?: string
           email?: string
-          emailVerified?: string
           id?: string
-          image?: string
+          image?: string | null
           name?: string
         }
         Relationships: []

@@ -1,48 +1,69 @@
-"use client";
+'use client';
 
-import { Box, IconButton, InputAdornment, TextField } from "@mui/material";
-import React from "react";
-import LoadingFormButton from "../buttons/LoadingFormButton";
+import { Box, IconButton, InputAdornment, TextField } from '@mui/material';
+import React, { useEffect } from 'react';
+import LoadingFormButton from '../buttons/LoadingFormButton';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
-import Image from "next/image";
-import iconError from "/public/images/icon-error.svg";
+import Image from 'next/image';
+import iconError from '/public/images/icon-error.svg';
+import { useSearchParams } from 'next/navigation';
+import { supaBrowserClient } from '@/lib/supabase/createBrowserClient';
 
 type Props = {};
 
 const initialState = {
-  error: "",
-  message: "",
+  error: '',
+  message: '',
+};
+
+const getAccessTokenFromHash = () => {
+  const hash = window.location.hash;
+  const params = new URLSearchParams(hash.replace('#', ''));
+  return params.get('access_token') ?? '';
 };
 
 export default function SignupContinueForm({}: Props) {
-  const [email, setEmail] = React.useState("");
-
-  const [password, setPassword] = React.useState("");
+  // const searchParams = useSearchParams();
+  // const [email, setEmail] = React.useState(searchParams.get('email'));
+  const [password, setPassword] = React.useState('');
   const [showPassword, setShowPassword] = React.useState(false);
 
+  const supabase = supaBrowserClient();
 
   const passErrorText = React.useMemo(() => {
     if (!password) return [];
 
     var errorMessages = [];
 
-    if (password.length < 8)
-      errorMessages.push("비밀번호는 최소 8자리 이상이어야 합니다");
+    if (password.length < 8) errorMessages.push('비밀번호는 최소 8자리 이상이어야 합니다');
     if (!/[A-Z]/.test(password))
-      errorMessages.push("비밀번호는 최소 1개 이상의 대문자를 포함해야 합니다");
+      errorMessages.push('비밀번호는 최소 1개 이상의 대문자를 포함해야 합니다');
     if (!/[a-z]/.test(password))
-      errorMessages.push("비밀번호는 최소 1개 이상의 소문자를 포함해야 합니다");
+      errorMessages.push('비밀번호는 최소 1개 이상의 소문자를 포함해야 합니다');
     if (!/[0-9]/.test(password))
-      errorMessages.push("비밀번호는 최소 1개 이상의 숫자를 포함해야 합니다");
+      errorMessages.push('비밀번호는 최소 1개 이상의 숫자를 포함해야 합니다');
     if (!/[!@#$%^&*]/.test(password))
-      errorMessages.push(
-        "비밀번호는 최소 1개 이상의 특수문자를 포함해야 합니다"
-      );
+      errorMessages.push('비밀번호는 최소 1개 이상의 특수문자를 포함해야 합니다');
 
     return errorMessages;
   }, [password]);
 
+  useEffect(() => {
+    console.log(getAccessTokenFromHash());
+    const getUser = async () => {
+      const { data, error } = await supabase.auth.signInWithIdToken({
+        provider: 'email',
+        token: getAccessTokenFromHash(),
+      });
+
+      // const { data, error } = await supabase.auth.getUser();
+      console.log(data);
+      console.log(error);
+    };
+
+    getUser();
+  });
 
   return (
     <>
@@ -50,15 +71,15 @@ export default function SignupContinueForm({}: Props) {
         component="form"
         noValidate
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          flexGrow: "1",
-          height: "100%",
-          justifyContent: "space-between",
+          display: 'flex',
+          flexDirection: 'column',
+          flexGrow: '1',
+          height: '100%',
+          justifyContent: 'space-between',
         }}
       >
         <div>
-          <div className="input-box" style={{ marginBottom: "16px" }}>
+          <div className="input-box" style={{ marginBottom: '16px' }}>
             <label htmlFor="firstName" className="subtitle1-eng">
               First Name
             </label>
@@ -72,7 +93,7 @@ export default function SignupContinueForm({}: Props) {
               name="firstName"
             />
           </div>
-          <div className="input-box" style={{ marginBottom: "16px" }}>
+          <div className="input-box" style={{ marginBottom: '16px' }}>
             <label htmlFor="lastName" className="subtitle1-eng">
               Last Name
             </label>
@@ -97,7 +118,7 @@ export default function SignupContinueForm({}: Props) {
               fullWidth
               name="password"
               placeholder="Please enter your password."
-              type={showPassword ? "text" : "password"}
+              type={showPassword ? 'text' : 'password'}
               id="password"
               autoComplete="current-password"
               onChange={(e) => {
@@ -118,13 +139,9 @@ export default function SignupContinueForm({}: Props) {
                   <InputAdornment position="end">
                     <IconButton
                       onClick={() => setShowPassword(!showPassword)}
-                      sx={{ opacity: 0.5, width: "20px", height: "20px" }}
+                      sx={{ opacity: 0.5, width: '20px', height: '20px' }}
                     >
-                      {showPassword ? (
-                        <VisibilityOffOutlinedIcon />
-                      ) : (
-                        <VisibilityOutlinedIcon />
-                      )}
+                      {showPassword ? <VisibilityOffOutlinedIcon /> : <VisibilityOutlinedIcon />}
                     </IconButton>
                   </InputAdornment>
                 ),
@@ -134,15 +151,12 @@ export default function SignupContinueForm({}: Props) {
         </div>
 
         <LoadingFormButton
-          className={
-            (email ? "opacity-100 visible" : "opacity-0 invisible") +
-            " transition-all duration-1000 ease-in-out subtitle-eng"
-          }
+          className={'opacity-100 visible transition-all duration-1000 ease-in-out subtitle-eng'}
           type="submit"
           fullWidth
           variant="contained"
-          disabled={email.length === 0}
-          sx={{ marginTop: "8px"}}
+          // disabled={email.length === 0}
+          sx={{ marginTop: '8px' }}
         >
           Sign Up
         </LoadingFormButton>

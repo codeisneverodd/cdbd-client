@@ -1,25 +1,38 @@
-"use client";
+'use client';
 
-import styles from "./styles.module.scss";
-import React from "react";
-import LoadingFormButton from "../buttons/LoadingFormButton";
-import { useFormState } from "react-dom";
-import { googleLogin } from "@/actions/googleLogin";
-import iconGoogle from "/public/images/icon-google-login.svg";
-import Image from "next/image";
+import styles from './styles.module.scss';
+import React, { useState } from 'react';
+import LoadingFormButton from '../buttons/LoadingFormButton';
+import iconGoogle from '/public/images/icon-google-login.svg';
+import Image from 'next/image';
+import { supaBrowserClient } from '@/lib/supabase/createBrowserClient';
 
-type Props = {};
+export default function GoogleLoginForm() {
+  const supabase = supaBrowserClient();
+  const [error, setError] = useState<string>();
 
-const initialState = {
-  error: "",
-  message: "",
-};
+  const handleGoogleLogin = async () => {
+    try {
+      const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
+        },
+      });
 
-export default function GoogleLoginForm({}: Props) {
-  const [state, googleLoginAction] = useFormState(googleLogin, initialState);
+      if (error) {
+        setError('구글 로그인을 불러오는데 오류가 발생했습니다. 다시 시도해주세요.');
+        throw error;
+      }
+
+      return { success: true };
+    } catch (error) {
+      return { error: 'Failed to sign in' };
+    }
+  };
 
   return (
-    <form action={googleLoginAction}>
+    <form onSubmit={handleGoogleLogin}>
       <LoadingFormButton
         fullWidth
         variant="outlined"
@@ -30,7 +43,7 @@ export default function GoogleLoginForm({}: Props) {
         <Image src={iconGoogle} alt="google logo" />
         Sign up with Google
       </LoadingFormButton>
-      {state?.error && <p className="text-red-500">{state.error}</p>}
+      {error && <p className="text-red-500">{error}</p>}
     </form>
   );
 }
