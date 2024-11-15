@@ -1,7 +1,7 @@
 import { Button, IconButton } from "@mui/material";
 import React, { ComponentProps } from "react";
 
-const ButtonPrimary = (props: any) => (
+const ButtonPrimary = (props: ComponentProps<typeof Button>) => (
   <Button
     variant="contained"
     sx={{

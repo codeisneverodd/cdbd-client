@@ -3,16 +3,23 @@ import styles from "./styles.module.scss";
 import PreviewFrame from "@/components/layout/PreviewFrame";
 import BlockList from "@/components/layout/BlockList";
 import DesignBox from "@/components/layout/DesignBox";
-import SideBar from "@/components/layout/SideBar";
 import Header from "@/components/layout/Header";
 import ModalWrapper from "@/components/modal/ModalWrapper";
+import { supaServerClient } from "@/lib/supabase/createServerClient";
+import SideBar from "@/components/layout/SideBar";
 
-export default function page() {
+export default async function page() {
+  const supabase = supaServerClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
   return (
     <div className={styles.wrap}>
-      <SideBar />
+      <SideBar user={user} />
       <div className={styles.contentWrap}>
-        <Header />
+        <Header user={user} />
         <section className={styles.content}>
           <div className={styles.editorWrap}>
             {/* modal */}
