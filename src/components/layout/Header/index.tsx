@@ -3,29 +3,31 @@ import styles from "./styles.module.scss";
 
 import { ActionCreators } from "redux-undo";
 
-import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import { IconButton, TextField } from "@mui/material";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 
-import iconUndo from "/public/images/icon-curved-undo.svg";
-import iconRedo from "/public/images/icon-curved-redo.svg";
-import iconView from "/public/images/icon-view.svg";
-import iconAutoSave from "/public/images/icon-autosave.svg";
-import iconEdit from "/public/images/icon-edit.svg";
 import { ButtonPrimary, IconButtonPrimary } from "@/components/buttons/Buttons";
 import Chips from "@/components/buttons/Chips";
-import { useDispatch, useSelector } from "react-redux";
 import {
   selectHasFuture,
   selectHasPast,
 } from "@/redux/features/BlockData/blockDataSlice";
+import { useDispatch, useSelector } from "react-redux";
+import iconAutoSave from "/public/images/icon-autosave.svg";
+import iconRedo from "/public/images/icon-curved-redo.svg";
+import iconUndo from "/public/images/icon-curved-undo.svg";
+import iconEdit from "/public/images/icon-edit.svg";
+import iconView from "/public/images/icon-view.svg";
 
 export default function Header() {
   const dispatch = useDispatch();
   const hasPast = useSelector(selectHasPast);
   const hasFuture = useSelector(selectHasFuture);
-  const [contentTitle, setContentTitle] = useState<string>("");
-  const [contentTitleEditMode, setContentTitleEditMode] = useState<boolean>();
+  const [contentTitle, setContentTitle] = useState<string>("콘텐츠 제목1");
+
+  const [contentTitleEditMode, setContentTitleEditMode] =
+    useState<boolean>(false);
   const contentTitleRef = useRef<HTMLInputElement>();
 
   useEffect(() => {
@@ -33,13 +35,7 @@ export default function Header() {
       const element = contentTitleRef?.current;
       element?.focus();
     }
-  },[contentTitleEditMode]);
-
-
-  // TODO: fetch content title
-  useEffect(() => {
-    setContentTitle("콘텐츠 제목1");
-  }, []);
+  }, [contentTitleEditMode]);
 
   return (
     <header className={styles.header}>
@@ -68,6 +64,14 @@ export default function Header() {
           disabled={!contentTitleEditMode}
           value={contentTitle}
           onChange={(e) => setContentTitle(e.target.value)}
+          onBlur={() => {
+            setContentTitleEditMode(false);
+          }}
+          onKeyUp={(e) => {
+            if (e.key === "Enter") {
+              setContentTitleEditMode(false);
+            }
+          }}
           size="small"
           InputProps={{
             startAdornment: <Chips variant="profile" />,
@@ -77,7 +81,9 @@ export default function Header() {
                   setContentTitleEditMode(!contentTitleEditMode);
                 }}
               >
-                <Image src={iconEdit} alt="iconEdit" width={14} height={14} />
+                {!contentTitleEditMode && (
+                  <Image src={iconEdit} alt="iconEdit" width={14} height={14} />
+                )}
               </IconButton>
             ),
           }}
