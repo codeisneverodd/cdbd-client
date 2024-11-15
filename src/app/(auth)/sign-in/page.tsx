@@ -28,24 +28,24 @@ export default function SignInSide() {
               <Image src={logo} alt="CdBd logo" />
             </div>
             <div className={styles.bottom}>
-              <p className={`h1-eng ${styles.title}`}>Sign In</p>
+              <p className={`h1-eng ${styles.title}`}>로그인하기</p>
 
               {/* Google login */}
               {email.length === 0 && (
                 <>
                   <GoogleLoginForm />
                   <div className={styles.divider}>
-                    <span className="subtitle2-eng">or</span>
+                    <span className="subtitle2-eng">또는</span>
                   </div>
                 </>
               )}
 
               {/* Email login */}
-              <EmailLogin email={email} setEmail={setEmail}/>
+              <EmailLogin email={email} setEmail={setEmail} />
               <div className={styles.signup}>
-                <span className="p2-eng">Not registered yet?</span>
+                <span className="p2-eng">아직 계정이 없으신가요?</span>
                 <Link className="subtitle2-eng" href="/sign-up">
-                  Sign Up Now
+                  지금 가입하기
                 </Link>
               </div>
             </div>

@@ -1,8 +1,8 @@
 "use client";
-import styles from "./styles.module.scss"
+import styles from "./styles.module.scss";
 import { credentialLogin } from "@/actions/credentialLogin";
-import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
-import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 import {
   Box,
   IconButton,
@@ -30,8 +30,7 @@ const initialState = {
   message: "",
 };
 
-export default function EmailLogin({email, setEmail
-}: Props) {
+export default function EmailLogin({ email, setEmail }: Props) {
   const pathname = usePathname();
   const [state, credentialLoginAction] = useFormState(
     credentialLogin,
@@ -77,7 +76,7 @@ export default function EmailLogin({email, setEmail
       <div>
         <div className="input-box" style={{ marginBottom: "20px" }}>
           <label htmlFor="email" className="subtitle1-eng">
-            Email
+            이메일
           </label>
           <TextField
             color="secondary"
@@ -86,7 +85,7 @@ export default function EmailLogin({email, setEmail
             fullWidth
             value={email}
             id="email"
-            placeholder="Please enter your email address."
+            placeholder="이메일 주소를 입력해주세요."
             name="email"
             autoComplete="email"
             autoFocus
@@ -96,7 +95,7 @@ export default function EmailLogin({email, setEmail
 
         <div className="input-box">
           <label htmlFor="password" className="subtitle1-eng">
-            Password
+            비밀번호
           </label>
           <TextField
             color="secondary"
@@ -104,7 +103,7 @@ export default function EmailLogin({email, setEmail
             required
             fullWidth
             name="password"
-            placeholder="Please enter your password."
+            placeholder="비밀번호를 입력해주세요."
             type={showPassword ? "text" : "password"}
             id="password"
             autoComplete="current-password"
@@ -124,8 +123,15 @@ export default function EmailLogin({email, setEmail
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
-                  <IconButton onClick={() => setShowPassword(!showPassword)} sx={{opacity: .5, width: "20px", height: "20px"}}>
-                    {showPassword ? <VisibilityOffOutlinedIcon /> : <VisibilityOutlinedIcon />}
+                  <IconButton
+                    onClick={() => setShowPassword(!showPassword)}
+                    sx={{ opacity: 0.5, width: "20px", height: "20px" }}
+                  >
+                    {showPassword ? (
+                      <VisibilityOffOutlinedIcon />
+                    ) : (
+                      <VisibilityOutlinedIcon />
+                    )}
                   </IconButton>
                 </InputAdornment>
               ),
@@ -137,7 +143,7 @@ export default function EmailLogin({email, setEmail
           href="/reset-password"
           className={`caption text-primary ${styles.forgotPassword}`}
         >
-          Forgot your password?
+          비밀번호를 잊으셨나요?
         </Link>
       </div>
 
@@ -148,7 +154,7 @@ export default function EmailLogin({email, setEmail
             fullWidth
             type="submit"
             disabled={Boolean(passErrorText.length) || !email || !password}
-            sx={{marginTop: "24px", marginBottom: "16px"}}
+            sx={{ marginTop: "24px", marginBottom: "16px" }}
           >
             Sign In
           </LoadingFormButton>
