@@ -73,13 +73,14 @@ function SignUpBox() {
             fullWidth
             sx={{ marginBottom: "16px" }}
           >
-            Start Without Signing Up
+            가입없이 시작하기
+            {/* Start Without Signing Up */}
           </Button>
 
           <div className={styles.signup}>
-            <span className="p2-eng">Already have an account?</span>
+            <span className="p2-eng">이미 계정을 가지고 계신가요?</span>
             <Link className="subtitle2-eng" href="/sign-in">
-              Sign In
+              로그인하기
             </Link>
           </div>
         </div>

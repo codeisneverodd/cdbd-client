@@ -7,7 +7,11 @@ import iconGoogle from "/public/images/icon-google-login.svg";
 import Image from "next/image";
 import { supaBrowserClient } from "@/lib/supabase/createBrowserClient";
 
-export default function GoogleLoginForm() {
+export default function GoogleLoginForm({
+  type = "signin",
+}: {
+  type?: "signup" | "signin";
+}) {
   const supabase = supaBrowserClient();
   const [error, setError] = useState<string>();
 
@@ -43,7 +47,7 @@ export default function GoogleLoginForm() {
         className={styles.googleButton}
       >
         <Image src={iconGoogle} alt="google logo" />
-        구글로 로그인하기
+        구글로 {type === "signin" ? "로그인하기" : "가입하기"}
       </LoadingFormButton>
       {error && <p className="text-red-500">{error}</p>}
     </form>

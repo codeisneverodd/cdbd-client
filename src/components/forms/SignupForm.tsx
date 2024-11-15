@@ -59,16 +59,16 @@ export default function SignupForm({}: Props) {
 
   return (
     <>
-      {email.length === 0 && (
-        <>
-          {/* Google login */}
-          <GoogleLoginForm />
+      {/* {email.length === 0 && ( */}
+      <>
+        {/* Google login */}
+        <GoogleLoginForm type="signup" />
 
-          <div className={styles.divider}>
-            <span className="subtitle2-eng">또는</span>
-          </div>
-        </>
-      )}
+        <div className={styles.divider}>
+          <span className="subtitle2-eng">또는</span>
+        </div>
+      </>
+      {/* )} */}
       <Box
         component="form"
         noValidate
@@ -138,24 +138,25 @@ export default function SignupForm({}: Props) {
             }}
           />
         </div> */}
-        {email.length > 0 && (
-          <LoadingFormButton
-            className={
-              (email ? "opacity-100 visible" : "opacity-0 invisible") +
-              " transition-all duration-1000 ease-in-out subtitle-eng"
-            }
-            type="submit"
-            fullWidth
-            variant="contained"
-            disabled={email.length === 0}
-            sx={{ marginTop: "8px", marginBottom: "16px" }}
-          >
-            Sign Up
-          </LoadingFormButton>
-        )}
+        {/* {email.length > 0 && ( */}
+        <LoadingFormButton
+          className={
+            // (email ? "opacity-100 visible" : "opacity-0 invisible") +
+            " transition-all duration-1000 ease-in-out subtitle-eng"
+          }
+          type="submit"
+          fullWidth
+          variant="contained"
+          disabled={email.length === 0}
+          sx={{ marginTop: "8px", marginBottom: "16px" }}
+        >
+          가입하기
+        </LoadingFormButton>
+        {/* )} */}
         <span className="caption-eng text-grey-400">
-          By signing up, you agree to CdBd&rsquo;s Terms of Service and Privacy
-          Policy.
+          가입함으로써 CdBd의 서비스 약관 및 개인정보 보호정책에 동의합니다.
+          {/* By signing up, you agree to CdBd&rsquo;s Terms of Service and Privacy
+          Policy. */}
         </span>
       </Box>
     </>
