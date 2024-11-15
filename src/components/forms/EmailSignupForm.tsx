@@ -2,19 +2,20 @@
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import { Box, IconButton, InputAdornment, TextField } from "@mui/material";
-import iconError from "/public/images/icon-error.svg";
 import iconCheck from "/public/images/icon-check.svg";
+import iconError from "/public/images/icon-error.svg";
 
 import { supaBrowserClient } from "@/lib/supabase/createBrowserClient";
-import { randomUUID } from "crypto";
 import Image from "next/image";
 import React from "react";
 import LoadingFormButton from "../buttons/LoadingFormButton";
+import { useRouter } from "next/navigation";
 
 type Props = {};
 
 export default function EmailSignupForm({}: Props) {
   const supabase = supaBrowserClient();
+  const router = useRouter();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [showPassword, setShowPassword] = React.useState(false);
@@ -39,11 +40,17 @@ export default function EmailSignupForm({}: Props) {
   ];
 
   const handleSignUp = async () => {
-    const otp = randomUUID();
-    const {} = await supabase.auth.signUp({
+    const { error } = await supabase.auth.signUp({
       email,
-      password: otp,
+      password,
+      options: {
+        emailRedirectTo: "/sign-up/verified",
+      },
     });
+    if (error) {
+      return alert("회원가입을 진행할 수 없습니다. 다시 시도해주세요.");
+    }
+    return router.push(`/register-email-sent?email=${email}`);
   };
 
   return (
