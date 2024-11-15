@@ -1,50 +1,50 @@
 .googleButton {
-    gap: 24px;
-    font-weight: 500;
-    line-height: 1;
-    font-family: 'Roboto' !important;
-    font-size: 14px;
-    padding: 12px;
-    height: 40px;
-    border: 1px solid var(--color-grey-800) !important;
+  gap: 24px;
+  font-weight: 500;
+  line-height: 1;
+  font-family: "Roboto" !important;
+  font-size: 14px;
+  padding: 12px;
+  height: 40px;
+  border: 1px solid var(--color-grey-800) !important;
 }
 
 .emailLoginWrap {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 
-    justify-content: space-between;
-    .forgotPassword {
-        display: block;
-        margin-top: 8px;
-    }
+  justify-content: space-between;
+  .forgotPassword {
+    display: block;
+    margin-top: 8px;
+  }
 }
 
 .divider {
-    position: relative;
-    height: 21px;
-    margin: 16px 0;
-    &::before {
-        content: '';
-        z-index: 1;
-        position: absolute;
-        top: 0;
-        width: 100%;
-        height: 10px;
-        border-bottom: 1px solid var(--color-grey-50);
-    }
-    span {
-        display: block;
-        width: 46px;
-        text-align: center;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        z-index: 2;
-        transform: translate(-50%, -50%);
+  position: relative;
+  height: 21px;
+  margin: 16px 0;
+  &::before {
+    content: "";
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 10px;
+    border-bottom: 1px solid var(--color-grey-50);
+  }
+  span {
+    display: block;
+    width: 46px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    transform: translate(-50%, -50%);
 
-        color: var(--color-grey-400);
-        background-color: #fff;
-    }
+    color: var(--color-grey-400);
+    background-color: #fff;
+  }
 }

@@ -1,77 +1,50 @@
 "use client";
-import styles from "./styles.module.scss";
-import { credentialLogin } from "@/actions/credentialLogin";
-import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import { supaBrowserClient } from "@/lib/supabase/createBrowserClient";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import {
   Box,
   IconButton,
   InputAdornment,
   TextField,
   Typography,
-  Link as MuiLink,
 } from "@mui/material";
 import Link from "next/link";
-import { redirect } from "next/navigation";
-import React, { Dispatch, SetStateAction, useEffect } from "react";
-import { useFormState } from "react-dom";
+import { useRouter } from "next/navigation";
+import React, { Dispatch, SetStateAction } from "react";
 import LoadingFormButton from "../buttons/LoadingFormButton";
-import { usePathname } from "next/navigation";
-import Image from "next/image";
-import iconError from "/public/images/icon-error.svg";
+import styles from "./styles.module.scss";
 
 type Props = {
   email: string;
   setEmail: Dispatch<SetStateAction<string>>;
 };
 
-const initialState = {
-  error: "",
-  message: "",
-};
-
 export default function EmailLogin({ email, setEmail }: Props) {
-  const pathname = usePathname();
-  const [state, credentialLoginAction] = useFormState(
-    credentialLogin,
-    initialState
-  );
+  const supabase = supaBrowserClient();
+  const router = useRouter();
   const [password, setPassword] = React.useState("");
   const [showPassword, setShowPassword] = React.useState(false);
+  const [error, setError] = React.useState("");
 
-  const passErrorText = React.useMemo(() => {
-    return [];
-    if (!password) return [];
-
-    var errorMessages = [];
-
-    if (password.length < 8)
-      errorMessages.push("비밀번호는 최소 8자리 이상이어야 합니다");
-    if (!/[A-Z]/.test(password))
-      errorMessages.push("비밀번호는 최소 1개 이상의 대문자를 포함해야 합니다");
-    if (!/[a-z]/.test(password))
-      errorMessages.push("비밀번호는 최소 1개 이상의 소문자를 포함해야 합니다");
-    if (!/[0-9]/.test(password))
-      errorMessages.push("비밀번호는 최소 1개 이상의 숫자를 포함해야 합니다");
-    if (!/[!@#$%^&*]/.test(password))
-      errorMessages.push(
-        "비밀번호는 최소 1개 이상의 특수문자를 포함해야 합니다"
-      );
-
-    return errorMessages;
-  }, [password]);
-
-  useEffect(() => {
-    if (pathname !== "/sign-in") {
-      // alert("You are not on the sign-in page");
-      redirect("/sign-in");
+  const handleLogin = async () => {
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+    if (error) {
+      return setError("로그인에 실패했습니다.");
     }
-  }, [pathname]);
+    router.push("/");
+  };
 
   return (
     <Box
       component="form"
-      action={credentialLoginAction}
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleLogin();
+      }}
       className={styles.emailLoginWrap}
     >
       <div>
@@ -111,16 +84,6 @@ export default function EmailLogin({ email, setEmail }: Props) {
             onChange={(e) => {
               setPassword(e.target.value);
             }}
-            error={Boolean(passErrorText.length)}
-            helperText={
-              passErrorText.length > 0 &&
-              passErrorText?.map((err) => (
-                <div className="helperText" key={err}>
-                  <Image src={iconError} alt="error" width={10} height={10} />
-                  <span>{err}</span>
-                </div>
-              ))
-            }
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
@@ -150,21 +113,21 @@ export default function EmailLogin({ email, setEmail }: Props) {
 
       <div>
         {/* {email?.length > 0 && ( */}
+
         <LoadingFormButton
           variant="contained"
           fullWidth
           type="submit"
-          disabled={Boolean(passErrorText.length) || !email || !password}
+          disabled={!email || !password}
           sx={{ marginTop: "24px", marginBottom: "16px" }}
         >
           로그인
         </LoadingFormButton>
         {/* )} */}
-
-        <Typography variant="body1" color="error">
-          {state?.error}
-        </Typography>
       </div>
+      <Typography variant="body1" color="error">
+        {error}
+      </Typography>
 
       {/* <Typography variant="body2" my={2}>
         가입과 동시에 CdBd의{" "}

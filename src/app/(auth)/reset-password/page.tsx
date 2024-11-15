@@ -7,7 +7,7 @@ import logo from "/public/images/logo-hybrid.svg";
 
 import { useState } from "react";
 import LanguageSelector from "@/components/util/LanguageSelector";
-import { credentialLogin } from "@/actions/credentialLogin";
+import { emailLogin } from "@/actions/credentialLogin";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 import {
@@ -68,7 +68,7 @@ export default function ResetPassword() {
               <div className={styles.signup}>
                 <span className="p2-eng">Remember your password?</span>
                 <Link className="subtitle2-eng" href="/sign-in">
-                    Sign In
+                  Sign In
                 </Link>
               </div>
             </div>
@@ -81,10 +81,7 @@ export default function ResetPassword() {
 
 function ResetPasswordForm({ email, setEmail }: Props) {
   const pathname = usePathname();
-  const [state, credentialLoginAction] = useFormState(
-    credentialLogin,
-    initialState
-  );
+  const [state, credentialLoginAction] = useFormState(emailLogin, initialState);
   const [password, setPassword] = React.useState("");
   const [showPassword, setShowPassword] = React.useState(false);
 

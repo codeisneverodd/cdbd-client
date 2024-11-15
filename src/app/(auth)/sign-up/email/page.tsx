@@ -1,33 +1,13 @@
 "use client";
 
-import * as React from "react";
-import styles from "../style.module.scss";
+import styles from "../../style.module.scss";
 
-import Button from "@mui/material/Button";
-import Link from "@mui/material/Link";
-import Typography from "@mui/material/Typography";
-import SignupForm from "@/components/forms/SignupForm";
 import LanguageSelector from "@/components/util/LanguageSelector";
+import Link from "@mui/material/Link";
 
+import EmailSignupForm from "@/components/forms/EmailSignupForm";
 import Image from "next/image";
 import logo from "/public/images/logo-hybrid.svg";
-import SignupContinueForm from "@/components/forms/SignupContinueForm";
-
-function Copyright(props: any) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      {...props}
-      sx={{ my: 2, mx: 4 }}
-    >
-      이미 가입하셨나요?{" "}
-      <Link href="/sign-in" variant="body2">
-        로그인
-      </Link>
-    </Typography>
-  );
-}
 
 export default function SignInSide() {
   return (
@@ -54,9 +34,9 @@ function SignUpBox() {
       </div>
       <div className={`${styles.bottom} ${styles.signupBottom}`}>
         <div>
-          <p className={`h1-eng ${styles.title}`}>지금 가입하기</p>
+          <p className={`h1-eng ${styles.title}`}>이메일로 가입하기</p>
 
-          <SignupForm />
+          <EmailSignupForm />
         </div>
 
         <div
