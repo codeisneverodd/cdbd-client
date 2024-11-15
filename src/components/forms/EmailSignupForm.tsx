@@ -15,9 +15,11 @@ type Props = {};
 
 export default function EmailSignupForm({}: Props) {
   const supabase = supaBrowserClient();
+  const [loading, setLoading] = React.useState(false);
   const router = useRouter();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+
   const [showPassword, setShowPassword] = React.useState(false);
 
   const helperTexts = [
@@ -40,16 +42,19 @@ export default function EmailSignupForm({}: Props) {
   ];
 
   const handleSignUp = async () => {
-    const { error } = await supabase.auth.signUp({
+    setLoading(true);
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
-        emailRedirectTo: "/sign-up/verified",
+        emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/sign-up/verified`,
       },
     });
+    setLoading(false);
     if (error) {
       return alert("회원가입을 진행할 수 없습니다. 다시 시도해주세요.");
     }
+
     return router.push(`/register-email-sent?email=${email}`);
   };
 
@@ -145,6 +150,7 @@ export default function EmailSignupForm({}: Props) {
             variant="contained"
             disabled={email.length === 0}
             sx={{ marginTop: "8px", marginBottom: "16px" }}
+            loading={false}
           >
             가입하기
           </LoadingFormButton>

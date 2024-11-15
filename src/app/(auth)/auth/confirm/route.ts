@@ -1,15 +1,16 @@
-import { createServerClient, type CookieOptions } from '@supabase/ssr';
-import { type EmailOtpType } from '@supabase/supabase-js';
-import { cookies } from 'next/headers';
-import { NextRequest, NextResponse } from 'next/server';
+import { createServerClient, type CookieOptions } from "@supabase/ssr";
+import { type EmailOtpType } from "@supabase/supabase-js";
+import { cookies } from "next/headers";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
-  const { searchParams } = new URL(request.url);
-  const token_hash = searchParams.get('token_hash');
-  const type = searchParams.get('type') as EmailOtpType | null;
-  const next = searchParams.get('next') ?? '/';
-  const redirectTo = request.nextUrl.clone();
-  redirectTo.pathname = next;
+  const { searchParams, origin } = new URL(request.url);
+  const token_hash = searchParams.get("token_hash");
+  const type = searchParams.get("type") as EmailOtpType | null;
+  const next = searchParams.get("next") ?? "/";
+
+  const forwardedHost = request.headers.get("x-forwarded-host"); // original origin before load balancer
+  const isLocalEnv = process.env.NODE_ENV === "development";
 
   if (token_hash && type) {
     const cookieStore = cookies();
@@ -24,29 +25,37 @@ export async function GET(request: NextRequest) {
           setAll(cookiesToSet) {
             try {
               cookiesToSet.forEach(({ name, value, options }) =>
-                cookieStore.set(name, value, options),
+                cookieStore.set(name, value, options)
               );
-            } catch {
-              // The `setAll` method was called from a Server Component.
-              // This can be ignored if you have middleware refreshing
-              // user sessions.
-            }
+            } catch {}
           },
         },
-      },
+      }
     );
 
-    const { error } = await supabase.auth.verifyOtp({
+    const {
+      data: { user },
+      error,
+    } = await supabase.auth.verifyOtp({
       type,
       token_hash,
     });
 
-    if (!error) {
-      return NextResponse.redirect(redirectTo);
+    if (!error && user) {
+      const { error } = await supabase.from("user").upsert({
+        id: user.id,
+        email: user.email,
+      });
     }
   }
 
   // return the user to an error page with some instructions
-  redirectTo.pathname = '/auth/auth-code-error';
-  return NextResponse.redirect(redirectTo);
+  if (isLocalEnv) {
+    // we can be sure that there is no load balancer in between, so no need to watch for X-Forwarded-Host
+    return NextResponse.redirect(`${origin}/sign-up/form`);
+  } else if (forwardedHost) {
+    return NextResponse.redirect(`https://${forwardedHost}/sign-up/form`);
+  } else {
+    return NextResponse.redirect(`${origin}/sign-up/form`);
+  }
 }
