@@ -1,15 +1,12 @@
-import React, { useContext, useEffect } from "react";
-import styles from "./styles.module.scss";
-import {
-  Button,
-  IconButton,
-  Stack,
-} from "@mui/material";
-import Image from "next/image";
-import iconClose from "/public/images/icon-close.svg";
-import { useDispatch } from "react-redux";
-import { hideModal } from "@/redux/features/Modal/modalSlice";
+"use client";
 
+import { hideModal } from "@/redux/features/Modal/modalSlice";
+import { Button, IconButton, Stack } from "@mui/material";
+import Image from "next/image";
+import React from "react";
+import { useDispatch } from "react-redux";
+import styles from "./styles.module.scss";
+import iconClose from "/public/images/icon-close.svg";
 
 type ModalProps = {
   children: React.ReactNode;
@@ -19,21 +16,32 @@ type ModalProps = {
   onClose?: () => void;
   onSubmit?: () => void;
 };
-export default function Modal({children, title, closeButton = true, addImageModal=false, onClose, onSubmit}:ModalProps) {
+export default function Modal({
+  children,
+  title,
+  closeButton = true,
+  addImageModal = false,
+  onClose,
+  onSubmit,
+}: ModalProps) {
   const dispatch = useDispatch();
 
   const handleModalClose = () => {
     onClose && onClose();
-    dispatch(hideModal())
-  }
+    dispatch(hideModal());
+  };
 
   const handleSubmit = () => {
     onSubmit && onSubmit();
-    dispatch(hideModal())
-  }
+    dispatch(hideModal());
+  };
 
   return (
-    <div className={addImageModal ? `${styles.wrap} ${styles.addImageModal}`: styles.wrap} >
+    <div
+      className={
+        addImageModal ? `${styles.wrap} ${styles.addImageModal}` : styles.wrap
+      }
+    >
       <div className={styles.head}>
         <span>{title}</span>
         <Stack direction="row" gap="8px" justifyContent="flex-end">

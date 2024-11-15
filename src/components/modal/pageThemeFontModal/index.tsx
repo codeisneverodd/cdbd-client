@@ -1,31 +1,31 @@
-import React, { useEffect } from "react";
-import styles from "./index.module.scss";
-import { Stack, Tab, ToggleButton, ToggleButtonGroup } from "@mui/material";
-import { TabContext, TabList, TabPanel } from "@mui/lab";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { RootState } from "@/redux/store";
 import {
   changePageStyle,
   changeStyle,
 } from "@/redux/features/BlockData/blockDataSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { RootState } from "@/redux/store";
+import { TabContext, TabList, TabPanel } from "@mui/lab";
+import { Stack, Tab, ToggleButton, ToggleButtonGroup } from "@mui/material";
 import {
+  Abril_Fatface,
+  Anton,
+  Bebas_Neue,
+  EB_Garamond,
   Lato,
+  Libre_Baskerville,
+  Montserrat,
+  Playfair_Display,
+  Poiret_One,
+  Poppins,
   PT_Sans,
   PT_Serif,
-  Montserrat,
   Quicksand,
-  Libre_Baskerville,
-  EB_Garamond,
-  Playfair_Display,
-  Poppins,
-  Abril_Fatface,
-  Bebas_Neue,
-  Anton,
-  Poiret_One,
-  Zeyada,
   Tienne,
+  Zeyada,
 } from "next/font/google";
+import React from "react";
 import Modal from "../Modal";
+import styles from "./index.module.scss";
 
 const lato = Lato({
   subsets: ["latin"],
@@ -113,7 +113,11 @@ export default function PageThemeFontModal() {
     (state) =>
       state.blockData.present.blocks.find((v) => v.id === forBlockId)?.style
   );
-  const [initialFontFamily, setInitialFontFamily] = React.useState(forBlockId ? styleForBlockId?.[fieldToSet ?? "fontFamily"] : pageStyle?.[fieldToSet ?? "fontFamily"])
+  const [initialFontFamily, setInitialFontFamily] = React.useState(
+    forBlockId
+      ? styleForBlockId?.[fieldToSet ?? "fontFamily"]
+      : pageStyle?.[fieldToSet ?? "fontFamily"]
+  );
 
   const dispatch = useAppDispatch();
 
@@ -136,7 +140,12 @@ export default function PageThemeFontModal() {
         })
       );
     } else {
-      dispatch(changePageStyle({ ...pageStyle, [fieldToSet ?? "fontFamily"]: newValue }));
+      dispatch(
+        changePageStyle({
+          ...pageStyle,
+          [fieldToSet ?? "fontFamily"]: newValue,
+        })
+      );
     }
   };
 
@@ -146,13 +155,21 @@ export default function PageThemeFontModal() {
       dispatch(
         changeStyle({
           id: forBlockId,
-          style: { ...styleForBlockId, [fieldToSet ?? "fontFamily"]: initialFontFamily },
+          style: {
+            ...styleForBlockId,
+            [fieldToSet ?? "fontFamily"]: initialFontFamily,
+          },
         })
       );
     } else {
-      dispatch(changePageStyle({ ...pageStyle, [fieldToSet ?? "fontFamily"]: initialFontFamily }));
+      dispatch(
+        changePageStyle({
+          ...pageStyle,
+          [fieldToSet ?? "fontFamily"]: initialFontFamily,
+        })
+      );
     }
-  }
+  };
 
   // useEffect(
   //   ()=>{
@@ -161,62 +178,67 @@ export default function PageThemeFontModal() {
   // )
 
   return (
-  <Modal title="서체 선택하기" closeButton={false} onSubmit={()=>{}} onClose={handleModalClose}>
-    <TabContext value={value}>
-      <TabList
-        onChange={handleChange}
-        sx={{
-          borderBottom: "1px solid var(--color-grey-100)",
-          minHeight: "36px",
-        }}
-      >
-        <Tab
-          label="한국어"
-          value="ko_KR"
-          className="h2"
-          sx={{ padding: "6px 16px", minHeight: "unset" }}
-        />
-        <Tab
-          label="ENG"
-          value="en_US"
-          className="h2"
-          sx={{ padding: "6px 16px", minHeight: "unset" }}
-        />
-      </TabList>
+    <Modal
+      title="서체 선택하기"
+      closeButton={false}
+      onSubmit={() => {}}
+      onClose={handleModalClose}
+    >
+      <TabContext value={value}>
+        <TabList
+          onChange={handleChange}
+          sx={{
+            borderBottom: "1px solid var(--color-grey-100)",
+            minHeight: "36px",
+          }}
+        >
+          <Tab
+            label="한국어"
+            value="ko_KR"
+            className="h2"
+            sx={{ padding: "6px 16px", minHeight: "unset" }}
+          />
+          <Tab
+            label="ENG"
+            value="en_US"
+            className="h2"
+            sx={{ padding: "6px 16px", minHeight: "unset" }}
+          />
+        </TabList>
 
-      <Stack
-        direction="row"
-        gap="32px"
-        sx={{
-          paddingTop: "32px",
-          maxHeight: 728,
-          overflowY: "auto",
-          mb: "32px",
-          paddingLeft: "1px",
-        }}
-      >
-        <TabPanel value="ko_KR" sx={{ padding: 0, flex: 1 }}>
-          <Korean
-            select={
-              forBlockId
-                ? styleForBlockId?.[fieldToSet ?? "fontFamily"]
-                : pageStyle?.[fieldToSet ?? "fontFamily"]
-            }
-            handleSelect={handleSelect}
-          />
-        </TabPanel>
-        <TabPanel value="en_US" sx={{ padding: 0, flex: 1 }}>
-          <English
-            select={
-              forBlockId
-                ? styleForBlockId?.[fieldToSet ?? "fontFamily"]
-                : pageStyle?.[fieldToSet ?? "fontFamily"]
-            }
-            handleSelect={handleSelect}
-          />
-        </TabPanel>
-      </Stack>
-    </TabContext>
+        <Stack
+          direction="row"
+          gap="32px"
+          sx={{
+            paddingTop: "32px",
+            maxHeight: 728,
+            overflowY: "auto",
+            mb: "32px",
+            paddingLeft: "1px",
+          }}
+        >
+          <TabPanel value="ko_KR" sx={{ padding: 0, flex: 1 }}>
+            <Korean
+              select={
+                forBlockId
+                  ? styleForBlockId?.[fieldToSet ?? "fontFamily"]
+                  : pageStyle?.[fieldToSet ?? "fontFamily"]
+              }
+              handleSelect={handleSelect}
+            />
+          </TabPanel>
+          <TabPanel value="en_US" sx={{ padding: 0, flex: 1 }}>
+            <English
+              select={
+                forBlockId
+                  ? styleForBlockId?.[fieldToSet ?? "fontFamily"]
+                  : pageStyle?.[fieldToSet ?? "fontFamily"]
+              }
+              handleSelect={handleSelect}
+            />
+          </TabPanel>
+        </Stack>
+      </TabContext>
     </Modal>
   );
 }

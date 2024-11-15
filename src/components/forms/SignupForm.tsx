@@ -33,6 +33,9 @@ export default function SignupForm({}: Props) {
         className="subtitle1-eng"
         fullWidth
         sx={{ marginBottom: "16px" }}
+        onClick={() => {
+          alert("아직 구현되지 않았습니다.");
+        }}
       >
         가입없이 시작하기
       </Button>

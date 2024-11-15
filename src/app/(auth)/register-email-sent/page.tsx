@@ -54,25 +54,6 @@ export default function SignUpResult() {
                   완료해주세요.
                 </span>
               </section>
-
-              {/* <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
-                <Button
-                  variant="outlined"
-                  color="info"
-                  className="subtitle1-eng"
-                  fullWidth
-                  sx={{ marginBottom: '16px' }}
-                >
-                  Start Without Signing Up
-                </Button>
-
-                <div className={styles.signup}>
-                  <span className="p2-eng">Already have an account?</span>
-                  <Link className="subtitle2-eng" href="/sign-in">
-                    Sign In
-                  </Link>
-                </div>
-              </div> */}
             </div>
           </div>
         </div>

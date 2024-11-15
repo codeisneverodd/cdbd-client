@@ -1,14 +1,14 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
+import StoreProvider from "@/redux/StoreProvider";
+import theme from "@/theme";
+import { CssBaseline } from "@mui/material";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import { ThemeProvider } from "@mui/material/styles";
-import theme from "@/theme";
-import "../styles/variables.css";
-import "../styles/reset.css";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "../styles/global.css";
-import { CssBaseline } from "@mui/material";
-import StoreProvider from "@/redux/StoreProvider";
+import "../styles/reset.css";
+import "../styles/variables.css";
+import "./globals.css";
 // import SideBar from "@/components/layout/SideBar";
 // import Header from "@/components/layout/Header";
 
