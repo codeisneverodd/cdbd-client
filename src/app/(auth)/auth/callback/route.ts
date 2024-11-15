@@ -1,11 +1,11 @@
-import { createServerClient } from '@supabase/ssr';
-import { cookies } from 'next/headers';
-import { NextResponse } from 'next/server';
+import { createServerClient } from "@supabase/ssr";
+import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url);
-  const code = searchParams.get('code');
-  const next = searchParams.get('next') ?? '/';
+  const code = searchParams.get("code");
+  const next = searchParams.get("next") ?? "/";
 
   if (code) {
     const cookieStore = cookies();
@@ -21,7 +21,7 @@ export async function GET(request: Request) {
           setAll(cookiesToSet) {
             try {
               cookiesToSet.forEach(({ name, value, options }) =>
-                cookieStore.set(name, value, options),
+                cookieStore.set(name, value, options)
               );
             } catch {
               // The `setAll` method was called from a Server Component.
@@ -30,42 +30,56 @@ export async function GET(request: Request) {
             }
           },
         },
-      },
+      }
     );
 
-    const { data, error } = await supabase.auth.exchangeCodeForSession(code);
+    const {
+      data: { user },
+      error: exchangeError,
+    } = await supabase.auth.exchangeCodeForSession(code);
 
-    if (!error) {
-      const { user } = data;
+    if (exchangeError || !user) {
+      return NextResponse.redirect(`${origin}`);
+    }
 
-      const { error: userError } = await supabase.from('user').upsert(
-        {
-          id: user.id,
-          email: user.email,
-          name: user.user_metadata.name,
-          image: user.user_metadata.avatar_url,
-        },
-        {
-          onConflict: 'id',
-        },
-      );
+    const { data: prevUser } = await supabase
+      .from("user")
+      .select("*")
+      .eq("id", user.id)
+      .maybeSingle();
+
+    const forwardedHost = request.headers.get("x-forwarded-host"); // original origin before load balancer
+    const isLocalEnv = process.env.NODE_ENV === "development";
+
+    if (!prevUser) {
+      const { error: userError } = await supabase.from("user").insert({
+        id: user.id,
+        email: user.email ?? null,
+        name: user.user_metadata.name ?? null,
+        image: user.user_metadata.avatar_url ?? null,
+      });
 
       if (userError) {
         console.error(userError);
         return NextResponse.redirect(`${origin}/auth/auth-code-error`);
       }
-
-      const forwardedHost = request.headers.get('x-forwarded-host'); // original origin before load balancer
-      const isLocalEnv = process.env.NODE_ENV === 'development';
-
       if (isLocalEnv) {
         // we can be sure that there is no load balancer in between, so no need to watch for X-Forwarded-Host
-        return NextResponse.redirect(`${origin}${next}`);
+        return NextResponse.redirect(`${origin}/onboarding`);
       } else if (forwardedHost) {
-        return NextResponse.redirect(`https://${forwardedHost}${next}`);
+        return NextResponse.redirect(`https://${forwardedHost}/onboarding`);
       } else {
-        return NextResponse.redirect(`${origin}${next}`);
+        return NextResponse.redirect(`${origin}/onboarding`);
       }
+    }
+
+    if (isLocalEnv) {
+      // we can be sure that there is no load balancer in between, so no need to watch for X-Forwarded-Host
+      return NextResponse.redirect(`${origin}${next}`);
+    } else if (forwardedHost) {
+      return NextResponse.redirect(`https://${forwardedHost}${next}`);
+    } else {
+      return NextResponse.redirect(`${origin}${next}`);
     }
   }
 
