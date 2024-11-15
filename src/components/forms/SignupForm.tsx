@@ -1,28 +1,28 @@
-'use client';
-import styles from './styles.module.scss';
-import { Box, IconButton, InputAdornment, TextField } from '@mui/material';
-import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
-import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
+"use client";
+import styles from "./styles.module.scss";
+import { Box, IconButton, InputAdornment, TextField } from "@mui/material";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 
-import React, { useEffect } from 'react';
-import GoogleLoginForm from './GoogleLoginForm';
-import { useFormState } from 'react-dom';
-import { signup } from '@/actions/signupAction';
-import { redirect, RedirectType } from 'next/navigation';
-import LoadingFormButton from '../buttons/LoadingFormButton';
-import Image from 'next/image';
-import iconError from '/public/images/icon-error.svg';
+import React, { useEffect } from "react";
+import GoogleLoginForm from "./GoogleLoginForm";
+import { useFormState } from "react-dom";
+import { signup } from "@/actions/signupAction";
+import { redirect, RedirectType } from "next/navigation";
+import LoadingFormButton from "../buttons/LoadingFormButton";
+import Image from "next/image";
+import iconError from "/public/images/icon-error.svg";
 
 type Props = {};
 
 const initialState = {
-  error: '',
-  message: '',
+  error: "",
+  message: "",
 };
 
 export default function SignupForm({}: Props) {
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
   const [showPassword, setShowPassword] = React.useState(false);
 
   const [state, signupAction] = useFormState(signup, initialState);
@@ -32,15 +32,18 @@ export default function SignupForm({}: Props) {
 
     var errorMessages = [];
 
-    if (password.length < 8) errorMessages.push('비밀번호는 최소 8자리 이상이어야 합니다');
+    if (password.length < 8)
+      errorMessages.push("비밀번호는 최소 8자리 이상이어야 합니다");
     if (!/[A-Z]/.test(password))
-      errorMessages.push('비밀번호는 최소 1개 이상의 대문자를 포함해야 합니다');
+      errorMessages.push("비밀번호는 최소 1개 이상의 대문자를 포함해야 합니다");
     if (!/[a-z]/.test(password))
-      errorMessages.push('비밀번호는 최소 1개 이상의 소문자를 포함해야 합니다');
+      errorMessages.push("비밀번호는 최소 1개 이상의 소문자를 포함해야 합니다");
     if (!/[0-9]/.test(password))
-      errorMessages.push('비밀번호는 최소 1개 이상의 숫자를 포함해야 합니다');
+      errorMessages.push("비밀번호는 최소 1개 이상의 숫자를 포함해야 합니다");
     if (!/[!@#$%^&*]/.test(password))
-      errorMessages.push('비밀번호는 최소 1개 이상의 특수문자를 포함해야 합니다');
+      errorMessages.push(
+        "비밀번호는 최소 1개 이상의 특수문자를 포함해야 합니다"
+      );
 
     return errorMessages;
   }, [password]);
@@ -62,7 +65,7 @@ export default function SignupForm({}: Props) {
           <GoogleLoginForm />
 
           <div className={styles.divider}>
-            <span className="subtitle2-eng">or</span>
+            <span className="subtitle2-eng">또는</span>
           </div>
         </>
       )}
@@ -72,9 +75,9 @@ export default function SignupForm({}: Props) {
         action={signupAction}
         //   onSubmit={handleSubmit}
       >
-        <div className="input-box" style={{ marginBottom: '16px' }}>
+        <div className="input-box" style={{ marginBottom: "16px" }}>
           <label htmlFor="email" className="subtitle1-eng">
-            Email
+            이메일
           </label>
           <TextField
             color="secondary"
@@ -84,15 +87,15 @@ export default function SignupForm({}: Props) {
             onChange={(e) => setEmail(e.target.value)}
             value={email}
             id="email"
-            placeholder="Please enter your email address."
+            placeholder="이메일 주소를 입력해주세요."
             name="email"
             autoComplete="email"
             error={Boolean(state.error)}
           />
         </div>
-        <div className="input-box">
+        {/* <div className="input-box">
           <label htmlFor="password" className="subtitle1-eng">
-            Password
+            비밀번호
           </label>
           <TextField
             color="secondary"
@@ -100,8 +103,8 @@ export default function SignupForm({}: Props) {
             required
             fullWidth
             name="password"
-            placeholder="Please enter your password."
-            type={showPassword ? 'text' : 'password'}
+            placeholder="비밀번호를 입력해주세요."
+            type={showPassword ? "text" : "password"}
             id="password"
             autoComplete="current-password"
             onChange={(e) => {
@@ -122,32 +125,37 @@ export default function SignupForm({}: Props) {
                 <InputAdornment position="end">
                   <IconButton
                     onClick={() => setShowPassword(!showPassword)}
-                    sx={{ opacity: 0.5, width: '20px', height: '20px' }}
+                    sx={{ opacity: 0.5, width: "20px", height: "20px" }}
                   >
-                    {showPassword ? <VisibilityOffOutlinedIcon /> : <VisibilityOutlinedIcon />}
+                    {showPassword ? (
+                      <VisibilityOffOutlinedIcon />
+                    ) : (
+                      <VisibilityOutlinedIcon />
+                    )}
                   </IconButton>
                 </InputAdornment>
               ),
             }}
           />
-        </div>
+        </div> */}
         {email.length > 0 && (
           <LoadingFormButton
             className={
-              (email ? 'opacity-100 visible' : 'opacity-0 invisible') +
-              ' transition-all duration-1000 ease-in-out subtitle-eng'
+              (email ? "opacity-100 visible" : "opacity-0 invisible") +
+              " transition-all duration-1000 ease-in-out subtitle-eng"
             }
             type="submit"
             fullWidth
             variant="contained"
             disabled={email.length === 0}
-            sx={{ marginTop: '8px', marginBottom: '16px' }}
+            sx={{ marginTop: "8px", marginBottom: "16px" }}
           >
             Sign Up
           </LoadingFormButton>
         )}
         <span className="caption-eng text-grey-400">
-          By signing up, you agree to CdBd&rsquo;s Terms of Service and Privacy Policy.
+          By signing up, you agree to CdBd&rsquo;s Terms of Service and Privacy
+          Policy.
         </span>
       </Box>
     </>

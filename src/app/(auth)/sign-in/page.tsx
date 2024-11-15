@@ -23,7 +23,8 @@ export default function SignInSide() {
           <div className={styles.formBox}>
             <div
               className={styles.top}
-              style={{ marginBottom: email.length > 0 ? "100px" : "80px" }}
+              // style={{ marginBottom: email.length > 0 ? "100px" : "80px" }}
+              style={{ marginBottom: "100px" }}
             >
               <Image src={logo} alt="CdBd logo" />
             </div>
@@ -31,14 +32,14 @@ export default function SignInSide() {
               <p className={`h1-eng ${styles.title}`}>로그인하기</p>
 
               {/* Google login */}
-              {email.length === 0 && (
-                <>
-                  <GoogleLoginForm />
-                  <div className={styles.divider}>
-                    <span className="subtitle2-eng">또는</span>
-                  </div>
-                </>
-              )}
+              {/* {email.length === 0 && ( */}
+              <>
+                <GoogleLoginForm />
+                <div className={styles.divider}>
+                  <span className="subtitle2-eng">또는</span>
+                </div>
+              </>
+              {/* )} */}
 
               {/* Email login */}
               <EmailLogin email={email} setEmail={setEmail} />

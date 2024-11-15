@@ -148,17 +148,17 @@ export default function EmailLogin({ email, setEmail }: Props) {
       </div>
 
       <div>
-        {email?.length > 0 && (
-          <LoadingFormButton
-            variant="contained"
-            fullWidth
-            type="submit"
-            disabled={Boolean(passErrorText.length) || !email || !password}
-            sx={{ marginTop: "24px", marginBottom: "16px" }}
-          >
-            Sign In
-          </LoadingFormButton>
-        )}
+        {/* {email?.length > 0 && ( */}
+        <LoadingFormButton
+          variant="contained"
+          fullWidth
+          type="submit"
+          disabled={Boolean(passErrorText.length) || !email || !password}
+          sx={{ marginTop: "24px", marginBottom: "16px" }}
+        >
+          로그인
+        </LoadingFormButton>
+        {/* )} */}
 
         <Typography variant="body1" color="error">
           {state?.error}
