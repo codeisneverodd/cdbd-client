@@ -2,7 +2,6 @@
 import React from "react";
 import LoadingFormButton from "../buttons/LoadingFormButton";
 import { useFormState } from "react-dom";
-import { logout } from "@/actions/logoutAction";
 
 type Props = {};
 
@@ -12,11 +11,11 @@ const initialState = {
 };
 
 export default function LogoutForm({}: Props) {
-  const [state, logoutAction] = useFormState(logout, initialState);
+  // const [state, logoutAction] = useFormState(logout, initialState);
 
   return (
     <form
-      action={logoutAction}
+      // action={logoutAction}
       className="flex flex-col items-center justify-center space-y-4"
     >
       <LoadingFormButton
@@ -25,7 +24,7 @@ export default function LogoutForm({}: Props) {
       >
         Logout
       </LoadingFormButton>
-      {state?.error && <p className="text-red-500">{state.error}</p>}
+      {/* {state?.error && <p className="text-red-500">{state.error}</p>} */}
     </form>
   );
 }

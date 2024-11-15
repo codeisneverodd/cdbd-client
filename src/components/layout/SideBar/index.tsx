@@ -1,9 +1,6 @@
 "use client";
 import styles from "./styles.module.scss";
 
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
 import {
   IconButton,
   List,
@@ -11,11 +8,15 @@ import {
   ListItemButton,
   Popover,
 } from "@mui/material";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
 
-import logo from "/public/images/logo-symbol.svg";
-import iconUser from "/public/images/icon-user.svg";
 import iconHelp from "/public/images/icon-help.svg";
-import { logout } from "@/actions/logoutAction";
+import iconUser from "/public/images/icon-user.svg";
+import logo from "/public/images/logo-symbol.svg";
+import { supaBrowserClient } from "@/lib/supabase/createBrowserClient";
+import { useRouter } from "next/navigation";
 
 const iconButtonStyle = {
   display: "flex",
@@ -63,10 +64,10 @@ export default function SideBar() {
       </div>
       <div className={styles.bottom}>
         <IconButton onClick={handleUserIconClick} sx={iconButtonStyle}>
-          <Image src={iconUser} alt="user" width={24} height={24}/>
+          <Image src={iconUser} alt="user" width={24} height={24} />
         </IconButton>
         <IconButton href="/help" sx={iconButtonStyle}>
-          <Image src={iconHelp} alt="help" width={24} height={24}/>
+          <Image src={iconHelp} alt="help" width={24} height={24} />
         </IconButton>
       </div>
 
@@ -92,9 +93,14 @@ const listButtonStyle = {
 };
 
 const CustomPopover = ({ id, anchorEl, handleClose, open }: PopoverProps) => {
+  const supabase = supaBrowserClient();
+  const router = useRouter();
   const handleLogout = async () => {
-    const result = await logout();
-    console.log("sign out result: ", result);
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      alert("로그아웃에 실패했습니다.");
+    }
+    return router.push("/sign-in");
   };
 
   return (
