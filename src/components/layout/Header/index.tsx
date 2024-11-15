@@ -19,6 +19,7 @@ import iconRedo from "/public/images/icon-curved-redo.svg";
 import iconUndo from "/public/images/icon-curved-undo.svg";
 import iconEdit from "/public/images/icon-edit.svg";
 import iconView from "/public/images/icon-view.svg";
+import Link from "next/link";
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -125,9 +126,11 @@ export default function Header() {
           <Image src={iconAutoSave} alt="autos ave" />
           <span className="h5">자동저장 중</span>
         </div>
-        <IconButtonPrimary>
-          <Image src={iconView} alt="view" />
-        </IconButtonPrimary>
+        <Link href="/preview" target="_blank">
+          <IconButtonPrimary>
+            <Image src={iconView} alt="view" />
+          </IconButtonPrimary>
+        </Link>
         <ButtonPrimary style={{ maxHeight: 38 }}>URL 생성하기</ButtonPrimary>
       </div>
     </header>

@@ -115,16 +115,14 @@ export const initialBlockDataState: blockDataState = {
         description: "간단한 소개글을 <br/>입력해 보세요",
         image: "",
         textAlign: "center",
-        structure:[
-          "profile",
-          "poster",
-        ],
+        structure: ["profile", "poster"],
         nameFontSize: 24,
         descriptionFontSize: 16,
         color: "#000000",
         aspectRatio: "1/1",
       },
-      value: (style?: any, id?: string) => React.createElement(ProfilePreview, { style, id }),
+      value: (style?: any, id?: string) =>
+        React.createElement(ProfilePreview, { style, id }),
     },
     {
       index: 1,
@@ -136,9 +134,10 @@ export const initialBlockDataState: blockDataState = {
       disabled: false,
       previewText: null,
       style: {
-        column: 2
+        column: 2,
       },
-      value: (style?: any, id?: string) => React.createElement(GalleryPreview, { style, id }),
+      value: (style?: any, id?: string) =>
+        React.createElement(GalleryPreview, { style, id }),
     },
     {
       index: 2,
@@ -155,12 +154,13 @@ export const initialBlockDataState: blockDataState = {
         fontWeight: "normal",
         lineHeight: 1.5,
         fontFamily: "inherit",
-        color:"#000000",
+        color: "#000000",
         borderWidth: 1,
         // fontStyle: "normal",
         textDecoration: "none",
       },
-      value: (style?: any, id?: string) => React.createElement(TextPreview, { style, id }),
+      value: (style?: any, id?: string) =>
+        React.createElement(TextPreview, { style, id }),
     },
     {
       index: 3,
@@ -187,7 +187,8 @@ export const initialBlockDataState: blockDataState = {
         padding: 0,
         margin: 0,
       },
-      value: (style?:any, id?: string) => React.createElement(ImagePreview, { style, id }),
+      value: (style?: any, id?: string) =>
+        React.createElement(ImagePreview, { style, id }),
     },
     {
       index: 4,
@@ -220,7 +221,8 @@ export const initialBlockDataState: blockDataState = {
         margin: 0,
         padding: 0,
       },
-      value: (style: any, id?: string) => React.createElement(VideoPreview, { style, id }),
+      value: (style: any, id?: string) =>
+        React.createElement(VideoPreview, { style, id }),
     },
     {
       index: 5,
@@ -259,7 +261,8 @@ export const initialBlockDataState: blockDataState = {
         margin: 0,
         padding: 0,
       },
-      value: (style?: any, id?: string) => React.createElement(LinkPreview, { style, id }),
+      value: (style?: any, id?: string) =>
+        React.createElement(LinkPreview, { style, id }),
     },
     {
       index: 6,
@@ -281,7 +284,8 @@ export const initialBlockDataState: blockDataState = {
         margin: 0,
         padding: 0,
       },
-      value: (style?: any, id?: string) => React.createElement(WhiteSpacePreview, { style, id }),
+      value: (style?: any, id?: string) =>
+        React.createElement(WhiteSpacePreview, { style, id }),
     },
     {
       index: 7,
@@ -293,42 +297,44 @@ export const initialBlockDataState: blockDataState = {
       disabled: false,
       previewText: null,
       data: {
-        question: [{
-          title: "Example: Choose from 1 below",
-          type: "",
-          options: [
-            {
-              title: "option 1",
-              checked: false,
-            },
-            {
-              title: "option 2",
-              checked: true,
-            },
-            {
-              title: "option 3",
-              checked: false,
-            }
-          ],
-        },
-        {
-          title: "Example: Choose from 2 below",
-          type: "",
-          options: [
-            {
-              title: "option 1",
-              checked: false,
-            },
-            {
-              title: "option 2",
-              checked: true,
-            },
-            {
-              title: "option 3",
-              checked: false,
-            }
-          ],
-        }],
+        question: [
+          {
+            title: "Example: Choose from 1 below",
+            type: "",
+            options: [
+              {
+                title: "option 1",
+                checked: false,
+              },
+              {
+                title: "option 2",
+                checked: true,
+              },
+              {
+                title: "option 3",
+                checked: false,
+              },
+            ],
+          },
+          {
+            title: "Example: Choose from 2 below",
+            type: "",
+            options: [
+              {
+                title: "option 1",
+                checked: false,
+              },
+              {
+                title: "option 2",
+                checked: true,
+              },
+              {
+                title: "option 3",
+                checked: false,
+              },
+            ],
+          },
+        ],
       },
       style: {
         type: "Radio",
@@ -342,7 +348,8 @@ export const initialBlockDataState: blockDataState = {
         margin: 16,
         padding: 0,
       },
-      value: (style?: any, id?: string) => React.createElement(QnaPreview, { style, id }),
+      value: (style?: any, id?: string) =>
+        React.createElement(QnaPreview, { style, id }),
     },
     {
       index: 8,
@@ -368,7 +375,8 @@ export const initialBlockDataState: blockDataState = {
         margin: 0,
         padding: 0,
       },
-      value: (style?: any, id?: string) => React.createElement(SNSPreview, { style, id }),
+      value: (style?: any, id?: string) =>
+        React.createElement(SNSPreview, { style, id }),
     },
     {
       index: 9,
@@ -383,10 +391,11 @@ export const initialBlockDataState: blockDataState = {
         type: "google",
         zoom: 12,
         aspectRatio: "3/2",
-        lat:'37.550263',
-        lng:'126.9970831'
+        lat: "37.550263",
+        lng: "126.9970831",
       },
-      value: (style?: any, id?: string) => React.createElement(MapPreview, { style, id }),
+      value: (style?: any, id?: string) =>
+        React.createElement(MapPreview, { style, id }),
     },
     {
       index: 10,
@@ -416,7 +425,8 @@ export const initialBlockDataState: blockDataState = {
         margin: 0,
         padding: 0,
       },
-      value: (style?: any, id?: string) => React.createElement(ContactPreview, { style, id }),
+      value: (style?: any, id?: string) =>
+        React.createElement(ContactPreview, { style, id }),
     },
     {
       index: 11,
@@ -436,9 +446,10 @@ export const initialBlockDataState: blockDataState = {
         margin: 0,
         padding: 0,
       },
-      value: (style?: any, id?: string) => React.createElement(CodePreview, { style, id }),
+      value: (style?: any, id?: string) =>
+        React.createElement(CodePreview, { style, id }),
     },
-    
+
     // NOTE: added new card(block) list
     {
       index: 12,
@@ -455,7 +466,8 @@ export const initialBlockDataState: blockDataState = {
         padding: 0,
         margin: 0,
       },
-      value: (style?:any, id?: string) => React.createElement(ImagePreview, { style, id }),
+      value: (style?: any, id?: string) =>
+        React.createElement(ImagePreview, { style, id }),
     },
     {
       index: 13,
@@ -466,7 +478,6 @@ export const initialBlockDataState: blockDataState = {
       active: false,
       disabled: false,
       previewText: null,
-
     },
     {
       index: 14,
@@ -485,7 +496,8 @@ export const initialBlockDataState: blockDataState = {
         // fontStyle: "normal",
         textDecoration: "none",
       },
-      value: (style?: any, id?: string) => React.createElement(TextPreview, { style, id }),
+      value: (style?: any, id?: string) =>
+        React.createElement(TextPreview, { style, id }),
     },
     {
       index: 15,
@@ -504,7 +516,8 @@ export const initialBlockDataState: blockDataState = {
         // fontStyle: "normal",
         textDecoration: "none",
       },
-      value: (style?: any, id?: string) => React.createElement(TextPreview, { style, id }),
+      value: (style?: any, id?: string) =>
+        React.createElement(TextPreview, { style, id }),
     },
     {
       index: 16,
@@ -523,7 +536,8 @@ export const initialBlockDataState: blockDataState = {
         // fontStyle: "normal",
         textDecoration: "none",
       },
-      value: (style?: any, id?: string) => React.createElement(TextPreview, { style, id }),
+      value: (style?: any, id?: string) =>
+        React.createElement(TextPreview, { style, id }),
     },
     {
       index: 17,
@@ -537,7 +551,8 @@ export const initialBlockDataState: blockDataState = {
       style: {
         type: "google",
       },
-      value: (style?: any, id?: string) => React.createElement(MapPreview, { style, id }),
+      value: (style?: any, id?: string) =>
+        React.createElement(MapPreview, { style, id }),
     },
     {
       index: 18,
@@ -554,7 +569,8 @@ export const initialBlockDataState: blockDataState = {
         padding: 0,
         margin: 0,
       },
-      value: (style?:any, id?: string) => React.createElement(ImagePreview, { style, id }),
+      value: (style?: any, id?: string) =>
+        React.createElement(ImagePreview, { style, id }),
     },
     {
       index: 19,
@@ -577,7 +593,8 @@ export const initialBlockDataState: blockDataState = {
         margin: 0,
         padding: 0,
       },
-      value: (style: any, id?: string) => React.createElement(VideoPreview, { style, id }),
+      value: (style: any, id?: string) =>
+        React.createElement(VideoPreview, { style, id }),
     },
     {
       index: 20,
@@ -619,7 +636,7 @@ export const initialBlockDataState: blockDataState = {
         fontStyle: "normal",
         textDecoration: "none",
       },
-      value: (style?:any)=>React.createElement(ContactPreview, {style}),
+      value: (style?: any) => React.createElement(ContactPreview, { style }),
     },
     {
       index: 22,
@@ -659,7 +676,8 @@ export const initialBlockDataState: blockDataState = {
         padding: 0,
         margin: 0,
       },
-      value: (style?:any, id?: string) => React.createElement(ImagePreview, { style, id }),
+      value: (style?: any, id?: string) =>
+        React.createElement(ImagePreview, { style, id }),
     },
     {
       index: 24,
@@ -678,7 +696,8 @@ export const initialBlockDataState: blockDataState = {
         // fontStyle: "normal",
         textDecoration: "none",
       },
-      value: (style?: any, id?: string) => React.createElement(TextPreview, { style, id }),
+      value: (style?: any, id?: string) =>
+        React.createElement(TextPreview, { style, id }),
     },
     {
       index: 25,
@@ -708,7 +727,8 @@ export const initialBlockDataState: blockDataState = {
         // fontStyle: "normal",
         textDecoration: "none",
       },
-      value: (style?: any, id?: string) => React.createElement(TextPreview, { style, id }),
+      value: (style?: any, id?: string) =>
+        React.createElement(TextPreview, { style, id }),
     },
     {
       index: 27,
@@ -725,7 +745,8 @@ export const initialBlockDataState: blockDataState = {
         padding: 0,
         margin: 0,
       },
-      value: (style?:any, id?: string) => React.createElement(ImagePreview, { style, id }),
+      value: (style?: any, id?: string) =>
+        React.createElement(ImagePreview, { style, id }),
     },
     {
       index: 28,
@@ -748,7 +769,8 @@ export const initialBlockDataState: blockDataState = {
         margin: 0,
         padding: 0,
       },
-      value: (style: any, id?: string) => React.createElement(VideoPreview, { style, id }),
+      value: (style: any, id?: string) =>
+        React.createElement(VideoPreview, { style, id }),
     },
     {
       index: 29,
@@ -790,7 +812,7 @@ export const initialBlockDataState: blockDataState = {
         fontStyle: "normal",
         textDecoration: "none",
       },
-      value: (style?:any)=>React.createElement(ContactPreview, {style}),
+      value: (style?: any) => React.createElement(ContactPreview, { style }),
     },
 
     {
@@ -808,7 +830,8 @@ export const initialBlockDataState: blockDataState = {
         padding: 0,
         margin: 0,
       },
-      value: (style?:any, id?: string) => React.createElement(ImagePreview, { style, id }),
+      value: (style?: any, id?: string) =>
+        React.createElement(ImagePreview, { style, id }),
     },
     {
       index: 32,
@@ -819,7 +842,7 @@ export const initialBlockDataState: blockDataState = {
       active: false,
       disabled: false,
       previewText: null,
-      value: React.createElement(IndexPreview),
+      value: () => React.createElement(IndexPreview),
     },
     {
       index: 33,
@@ -838,7 +861,8 @@ export const initialBlockDataState: blockDataState = {
         // fontStyle: "normal",
         textDecoration: "none",
       },
-      value: (style?: any, id?: string) => React.createElement(TextPreview, { style, id }),
+      value: (style?: any, id?: string) =>
+        React.createElement(TextPreview, { style, id }),
     },
     {
       index: 34,
@@ -855,7 +879,8 @@ export const initialBlockDataState: blockDataState = {
         padding: 0,
         margin: 0,
       },
-      value: (style?:any, id?: string) => React.createElement(ImagePreview, { style, id }),
+      value: (style?: any, id?: string) =>
+        React.createElement(ImagePreview, { style, id }),
     },
     {
       index: 35,
@@ -878,7 +903,8 @@ export const initialBlockDataState: blockDataState = {
         margin: 0,
         padding: 0,
       },
-      value: (style: any, id?: string) => React.createElement(VideoPreview, { style, id }),
+      value: (style: any, id?: string) =>
+        React.createElement(VideoPreview, { style, id }),
     },
     {
       index: 36,
@@ -902,7 +928,7 @@ export const initialBlockDataState: blockDataState = {
         fontStyle: "normal",
         textDecoration: "none",
       },
-      value: (style?: any)=>React.createElement(LinkPreview, {style}),
+      value: (style?: any) => React.createElement(LinkPreview, { style }),
     },
     {
       index: 37,
@@ -944,7 +970,7 @@ export const initialBlockDataState: blockDataState = {
         fontStyle: "normal",
         textDecoration: "none",
       },
-      value: (style?:any)=>React.createElement(ContactPreview, {style}),
+      value: (style?: any) => React.createElement(ContactPreview, { style }),
     },
 
     {
@@ -964,7 +990,8 @@ export const initialBlockDataState: blockDataState = {
         // fontStyle: "normal",
         textDecoration: "none",
       },
-      value: (style?:any, id?: string)=>React.createElement(TextPreview, { style, id }),
+      value: (style?: any, id?: string) =>
+        React.createElement(TextPreview, { style, id }),
     },
     {
       index: 40,
@@ -1028,15 +1055,18 @@ export const blockDataSlice = createSlice({
     },
     changeStyle: (state, action) => {
       const { id, style, wrapperStyle } = action.payload;
-      const targetBlock = state.blocks.find((block) => block.id === (id??state.selectedBlockId));
+      const targetBlock = state.blocks.find(
+        (block) => block.id === (id ?? state.selectedBlockId)
+      );
       if (targetBlock) {
-        style ? (targetBlock.style = style):null;
-        wrapperStyle ? (targetBlock.wrapperStyle = wrapperStyle):null;
+        style ? (targetBlock.style = style) : null;
+        wrapperStyle ? (targetBlock.wrapperStyle = wrapperStyle) : null;
       }
 
       return state;
     },
-    changeText: (state, action) => { //add changeText to changeData
+    changeText: (state, action) => {
+      //add changeText to changeData
       const { id, text } = action.payload;
       const targetBlock = state.blocks.find((block) => block.id === id);
 
@@ -1046,9 +1076,12 @@ export const blockDataSlice = createSlice({
 
       return state;
     },
-    changeData: (state, action) => { //add changeText to changeData
+    changeData: (state, action) => {
+      //add changeText to changeData
       const { id, data } = action.payload;
-      const targetBlock = state.blocks.find((block) => block.id === (id??state.selectedBlockId));
+      const targetBlock = state.blocks.find(
+        (block) => block.id === (id ?? state.selectedBlockId)
+      );
 
       if (targetBlock) {
         targetBlock.data = data;
@@ -1069,7 +1102,7 @@ export const blockDataSlice = createSlice({
     selectBlock: (state, action: PayloadAction<string>) => {
       state.selectedBlockId = action.payload;
       state.showAppTheme = false;
-      
+
       // make selected block active
       state.blocks = state.blocks.map((block) => ({
         ...block,
@@ -1085,7 +1118,16 @@ export const blockDataSlice = createSlice({
   },
 });
 
-export const { move, selectBlock, changeStyle, showAppTheme, changePageStyle, changeText, changeBlockStatus, changeData } = blockDataSlice.actions;
+export const {
+  move,
+  selectBlock,
+  changeStyle,
+  showAppTheme,
+  changePageStyle,
+  changeText,
+  changeBlockStatus,
+  changeData,
+} = blockDataSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectBlocks = (state: RootState) =>

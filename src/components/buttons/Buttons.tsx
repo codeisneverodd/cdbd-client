@@ -1,5 +1,5 @@
 import { Button, IconButton } from "@mui/material";
-import React from "react";
+import React, { ComponentProps } from "react";
 
 const ButtonPrimary = (props: any) => (
   <Button
@@ -31,25 +31,29 @@ const ButtonPrimaryBlack = (props: any) => (
 ButtonPrimaryBlack.muiName = "Button";
 
 const ButtonSecondary = (props: any) => (
-  <Button variant="outlined" sx={{
-    width: "max-content",
-    height: 34,
-    padding: "0 16px",
-    fontWeight: 600,
-    lineHeight: 1.5,
-    color: "var(--color-grey-800)",
-    letterSpacing: "-0.28px",
-    borderColor: "var(--color-grey-200)",
-    backgroundColor: "var(--color-white)",
-    "&:hover": {
+  <Button
+    variant="outlined"
+    sx={{
+      width: "max-content",
+      height: 34,
+      padding: "0 16px",
+      fontWeight: 600,
+      lineHeight: 1.5,
+      color: "var(--color-grey-800)",
+      letterSpacing: "-0.28px",
+      borderColor: "var(--color-grey-200)",
+      backgroundColor: "var(--color-white)",
+      "&:hover": {
         borderColor: "var(--color-grey-200)",
         backgroundColor: "var(--color-grey-50)",
       },
-  }} {...props} />
+    }}
+    {...props}
+  />
 );
 ButtonSecondary.muiName = "Button";
 
-const IconButtonPrimary = (props: any) => (
+const IconButtonPrimary = (props: ComponentProps<typeof IconButton>) => (
   <IconButton
     sx={{
       width: 38,
@@ -64,7 +68,7 @@ const IconButtonPrimary = (props: any) => (
         borderColor: "var(--color-primary-light)",
       },
       "&:disabled img": {
-        opacity: .4,
+        opacity: 0.4,
       },
       "&:hover": {
         backgroundColor: "var(--color-primary-light)",
@@ -76,6 +80,9 @@ const IconButtonPrimary = (props: any) => (
 );
 IconButtonPrimary.muiName = "Button";
 
-
-
-export { ButtonPrimary, ButtonSecondary, ButtonPrimaryBlack, IconButtonPrimary};
+export {
+  ButtonPrimary,
+  ButtonSecondary,
+  ButtonPrimaryBlack,
+  IconButtonPrimary,
+};

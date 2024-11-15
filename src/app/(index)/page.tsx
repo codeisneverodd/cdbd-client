@@ -1,4 +1,3 @@
-// 'use client';
 import { Grid } from "@mui/material";
 import styles from "./styles.module.scss";
 import PreviewFrame from "@/components/layout/PreviewFrame";
@@ -36,4 +35,3 @@ export default function page() {
     </div>
   );
 }
-
